@@ -5,8 +5,9 @@
     v-click-outside="() => setThumbnailsFocus(false)"
     v-contextmenu="contextmenusThumbnails"
   >
-    <div class="add-slide">
-      <div class="btn" @click="presetLayoutPopoverVisible = !presetLayoutPopoverVisible"><IconTheme class="icon" />{{ $t('thumbnails.selectTheme') }}</div>
+    <div class="add-slide" @click="presetLayoutPopoverVisible = !presetLayoutPopoverVisible">
+      <div class="btn"><IconPlus class="icon" /></div>
+      <div class="select-theme-text">{{ $t('thumbnails.selectTheme') }}</div>
       <Popover trigger="click" placement="bottom-start" v-model:value="presetLayoutPopoverVisible" center>
         <template #content>
           <Templates 
@@ -390,35 +391,69 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   position: relative;
 }
 .add-slide {
-  height: 48px;
-  font-size: 13px;
+  height: 64px;
   display: flex;
+  align-items: center;
+  padding: 0 16px;
   flex-shrink: 0;
-  border-bottom: 1px solid $borderColor;
-  cursor: pointer;
-  color: $textColor;
+  gap: 12px;
 
   .btn {
-    flex: 1;
+    width: 32px;
+    height: 32px;
+    background-color: $accentTeal;
+    color: #fff;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: all $transitionDelay;
+    box-shadow: 0 4px 10px rgba(0, 196, 204, 0.3);
 
     &:hover {
-      background-color: #252525;
+      scale: 1.1;
+      filter: brightness(1.1);
+    }
+
+    .icon {
+      font-size: 16px;
     }
   }
-  .select-btn {
-    width: 36px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid $borderColor;
-
+  
+  .select-theme-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: $textColor;
+    cursor: pointer;
+    
     &:hover {
-      background-color: #252525;
+      color: $accentTeal;
     }
+  }
+
+  .select-btn {
+    display: none;
+  }
+}
+
+.add-slide-fixed {
+  height: 40px;
+  margin: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $textColor;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $borderRadiusPill;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all $transitionDelay;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .icon {
@@ -427,32 +462,8 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   }
 }
 
-.add-slide-fixed {
-  height: 44px;
-  margin: 12px;
-  background-color: $themeColor;
-  color: #fff;
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all $transitionDelay;
-  font-weight: 500;
-
-  &:hover {
-    filter: brightness(1.1);
-  }
-
-  .icon {
-    margin-right: 8px;
-    font-size: 16px;
-  }
-}
-
 .thumbnail-list {
-  padding: 10px 0;
+  padding: 0;
   flex: 1;
   overflow: auto;
 }
@@ -460,32 +471,33 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 0;
+  padding: 10px 0;
   position: relative;
 
   .thumbnail {
     border-radius: $borderRadius;
     outline: 2px solid transparent;
-    box-shadow: $boxShadow;
+    transition: all $transitionDelayFast;
   }
 
   &.active {
     .label {
-      color: #fff;
-      font-weight: 600;
+      color: $accentTeal;
+      font-weight: 700;
     }
     .thumbnail {
-      outline-color: #0288D1;
+      outline-color: $accentTeal;
+      box-shadow: 0 0 15px rgba(0, 196, 204, 0.2);
     }
   }
   &.selected {
     .thumbnail {
-      outline-color: #0288D1;
+      outline-color: $accentTeal;
     }
   }
 
   .label {
-    font-size: 12px;
+    font-size: 11px;
     color: $textColorSecondary;
     width: 24px;
     text-align: right;

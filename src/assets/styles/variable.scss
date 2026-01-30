@@ -1,14 +1,17 @@
-$themeColor: #374151;
-$themeHoverColor: #4B5563;
-$textColor: #E5E7EB;
-$textColorSecondary: #6B7280;
-$borderColor: #4B5563;
+$themeColor: #00c4cc; // Canva-like Teal/Blue
+$themeHoverColor: #00a8ad;
+$charcoal: #18191b; // Canva Dark
+$canvaBlurryGray: rgba(255, 255, 255, 0.1);
+$textColor: #ffffff;
+$textColorSecondary: #a7acb1;
+$borderColor: rgba(255, 255, 255, 0.1);
 $lightGray: #252525;
-$sidebarBg: #171717;
-$headerBg: #1F1F1F;
+$sidebarBg: #18191b;
+$headerBg: #18191b;
 $surfaceBg: #252525;
-$accentColor: #9CA3AF;
-$accentTeal: #64748B;
+$accentColor: #7d2ae8; // Canva Purple
+$accentTeal: #00c4cc;
+$shareBtnBg: rgba(255, 255, 255, 0.1);
 
 $slideGradient: linear-gradient(135deg, #0288D1 0%, #BFDBFE 100%);
 
@@ -18,7 +21,8 @@ $transitionDelay: .2s;
 $transitionDelayFast: .1s;
 $transitionDelaySlow: .3s;
 
-$borderRadius: 8px;
+$borderRadius: 4px;
+$borderRadiusPill: 100px;
 
 $uiFont: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 $headingFont: 'Playfair Display', serif;

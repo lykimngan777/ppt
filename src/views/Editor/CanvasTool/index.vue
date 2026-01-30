@@ -3,8 +3,10 @@
     <div class="left-handler">
       <IconBack class="handler-item" :class="{ 'disable': !canUndo }" v-tooltip="$t('canvasTool.undo')" @click="undo()" />
       <IconNext class="handler-item" :class="{ 'disable': !canRedo }" v-tooltip="$t('canvasTool.redo')" @click="redo()" />
+      
+      <div class="divider"></div>
+
       <div class="more">
-        <Divider type="vertical" style="height: 20px;" />
         <Popover class="more-icon" trigger="click" v-model:value="moreVisible" :offset="10">
           <template #content>
             <PopoverMenuItem class="popover-menu-item" center @click="toggleNotesPanel(); moreVisible = false"><IconComment class="icon" />{{ $t('canvasTool.notes') }}</PopoverMenuItem>
@@ -21,7 +23,7 @@
 
     <div class="add-element-handler">
       <div class="insert-handler-item group-btn" :class="{ 'active': creatingElement?.type === 'text' }" v-tooltip="$t('canvasTool.insertText')">
-        <div class="group-btn-main" @click="drawText()"><IconFontSize class="icon" /> <span class="text">{{ $t('canvasTool.text') }}</span></div>
+        <div class="group-btn-main" @click="drawText()"><IconFontSize class="icon" /></div>
         
         <Popover trigger="click" v-model:value="textTypeSelectVisible" style="height: 100%;" :offset="10">
           <template #content>
@@ -36,7 +38,7 @@
           <template #content>
             <ShapePool @select="shape => drawShape(shape)" />
           </template>
-          <div class="group-btn-main"><IconGraphicDesign class="icon" /> <span class="text">{{ $t('canvasTool.shape') }}</span></div>
+          <div class="group-btn-main"><IconGraphicDesign class="icon" /></div>
         </Popover>
         
         <Popover trigger="click" v-model:value="shapeMenuVisible" style="height: 100%;" :offset="10">
@@ -49,7 +51,7 @@
       </div>
       <div class="insert-handler-item group-btn" v-tooltip="$t('canvasTool.insertImage')">
         <FileInput style="height: 100%;" @change="files => insertImageElement(files)">
-          <div class="group-btn-main"><IconPicture class="icon" /> <span class="text">{{ $t('canvasTool.image') }}</span></div>
+          <div class="group-btn-main"><IconPicture class="icon" /></div>
         </FileInput>
         
         <Popover trigger="click" v-model:value="imageMenuVisible" style="height: 100%;" :offset="10">
@@ -67,15 +69,18 @@
           <LinePool @select="line => drawLine(line)" />
         </template>
         <div class="insert-handler-item" :class="{ 'active': creatingElement?.type === 'line' }" v-tooltip="$t('canvasTool.insertLine')">
-          <IconConnection class="icon" /> <span class="text">{{ $t('canvasTool.line') }}</span>
+          <IconConnection class="icon" />
         </div>
       </Popover>
+
+      <div class="divider"></div>
+
       <Popover trigger="click" v-model:value="chartPoolVisible" :offset="10">
         <template #content>
           <ChartPool @select="chart => { createChartElement(chart); chartPoolVisible = false }" />
         </template>
         <div class="insert-handler-item" v-tooltip="$t('canvasTool.insertChart')">
-          <IconChartProportion class="icon" /> <span class="text">{{ $t('canvasTool.chart') }}</span>
+          <IconChartProportion class="icon" />
         </div>
       </Popover>
       <Popover trigger="click" v-model:value="tableGeneratorVisible" :offset="10">
@@ -86,11 +91,11 @@
           />
         </template>
         <div class="insert-handler-item" v-tooltip="$t('canvasTool.insertTable')">
-          <IconInsertTable class="icon" /> <span class="text">{{ $t('canvasTool.table') }}</span>
+          <IconInsertTable class="icon" />
         </div>
       </Popover>
       <div class="insert-handler-item" v-tooltip="$t('canvasTool.insertLatex')" @click="latexEditorVisible = true">
-        <IconFormula class="icon" /> <span class="text">{{ $t('canvasTool.latex') }}</span>
+        <IconFormula class="icon" />
       </div>
       <Popover trigger="click" v-model:value="mediaInputVisible" :offset="10">
         <template #content>
@@ -101,15 +106,16 @@
           />
         </template>
         <div class="insert-handler-item" v-tooltip="$t('canvasTool.insertMedia')">
-          <IconVideoTwo class="icon" /> <span class="text">{{ $t('canvasTool.media') }}</span>
+          <IconVideoTwo class="icon" />
         </div>
       </Popover>
       <div class="insert-handler-item" :class="{ 'active': showSymbolPanel }" v-tooltip="$t('canvasTool.insertSymbol')" @click="toggleSymbolPanel()">
-        <IconSymbol class="icon" /> <span class="text">{{ $t('canvasTool.symbol') }}</span>
+        <IconSymbol class="icon" />
       </div>
     </div>
 
     <div class="right-handler">
+      <div class="divider"></div>
       <IconMinus class="handler-item viewport-size" v-tooltip="$t('canvasTool.canvasZoomOut')" @click="scaleCanvas('-')" />
       <Popover trigger="click" v-model:value="canvasScaleVisible">
         <template #content>
@@ -121,7 +127,7 @@
           >{{item}}%</PopoverMenuItem>
           <PopoverMenuItem center @click="resetCanvas(); canvasScaleVisible = false">{{ $t('canvasTool.adaptScreen') }}</PopoverMenuItem>
         </template>
-        <div style="padding: 10px; width: 200px">
+        <div class="zoom-slider-container">
           <Slider 
             :value="canvasScaleNum" 
             :min="10" 
@@ -131,6 +137,7 @@
           />
         </div>
       </Popover>
+      <span class="scale-text" style="font-size: 12px; min-width: 40px; text-align: center;">{{canvasScaleNum}}%</span>
       <IconPlus class="handler-item viewport-size" v-tooltip="$t('canvasTool.canvasZoomIn')" @click="scaleCanvas('+')" />
       <IconFullScreen class="handler-item viewport-size-adaptation" v-tooltip="$t('canvasTool.adaptScreen')" @click="resetCanvas()" />
     </div>
@@ -285,18 +292,27 @@ const openImageLibPanel = () => {
   background-color: $headerBg;
   display: flex;
   justify-content: space-between;
-  padding: 0 16px;
-  font-size: 13px;
+  padding: 0 20px;
+  height: 52px;
   user-select: none;
   color: $textColor;
+  align-items: center;
 }
-.left-handler, .more {
+.left-handler, .more, .right-handler, .add-element-handler {
   display: flex;
   align-items: center;
 }
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0 12px;
+}
+
 .popover-menu-item {
   display: flex;
-  padding: 8px 10px;
+  padding: 8px 12px;
 
   &.center {
     justify-content: center;
@@ -304,119 +320,129 @@ const openImageLibPanel = () => {
 
   .icon {
     font-size: 18px;
-    margin-right: 8px;
+    margin-right: 10px;
   }
 }
+
 .add-element-handler {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-
-  & > div {
-    flex-shrink: 0;
-  }
+  gap: 4px;
 
   .insert-handler-item {
-    height: 32px;
-    font-size: 14px;
-    margin: 0 4px;
-    padding: 0 12px;
+    height: 36px;
+    min-width: 36px;
+    padding: 0 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: $borderRadius;
-    overflow: hidden;
     cursor: pointer;
-    transition: all $transitionDelay;
+    transition: all $transitionDelayFast;
+    color: $textColorSecondary;
 
-    &:not(.group-btn):hover {
-      background-color: #2D2D2D;
+    .icon {
+      font-size: 20px;
     }
 
-    &.active {
-      background-color: #2D2D2D;
+    .text {
+      display: none; // Hide text labels as requested
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
 
-    .icon {
-      margin-right: 6px;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
     }
 
     &.group-btn {
       padding: 0;
-
-      &:hover {
-        background-color: #2D2D2D;
-      }
+      gap: 0;
 
       .group-btn-main {
         height: 100%;
+        padding: 0 4px 0 8px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        padding: 0 8px;
-
+        border-radius: $borderRadius 0 0 $borderRadius;
+        
         &:hover {
-          background-color: #3D3D3D;
+          background-color: rgba(255, 255, 255, 0.05);
         }
       }
 
       .arrow {
         height: 100%;
+        width: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 10px;
-        padding: 0 4px;
-  
+        border-radius: 0 $borderRadius $borderRadius 0;
+
         &:hover {
-          background-color: #3D3D3D;
+          background-color: rgba(255, 255, 255, 0.05);
         }
       }
     }
   }
 }
+
 .handler-item {
-  height: 32px;
-  font-size: 14px;
-  margin: 0 2px;
+  height: 36px;
+  width: 36px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: $borderRadius;
-  overflow: hidden;
+  border-radius: 50%; // Soft circular hover
   cursor: pointer;
-  transition: all $transitionDelay;
+  transition: all $transitionDelayFast;
+  color: $textColorSecondary;
 
   &.disable {
-    opacity: .3;
+    opacity: .2;
+    cursor: not-allowed;
   }
 
   &:not(.disable):hover {
-    background-color: #2D2D2D;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  
+  &.active {
+    color: $themeColor;
   }
 }
+
 .right-handler {
-  display: flex;
-  align-items: center;
+  gap: 8px;
 
-  .viewport-size {
-    padding: 0 8px;
+  .viewport-size-adaptation {
+    font-size: 18px;
   }
 }
 
-@media screen and (width <= 1600px) {
-  .add-element-handler {
-    .insert-handler-item {
-      .text {
-        display: none;
-      }
-      .icon {
-        margin-right: 0;
-      }
-    }
+.zoom-slider-container {
+  padding: 10px 16px;
+  width: 180px;
+  
+  ::v-deep(.slider-line) {
+    height: 2px !important; // Thin slider line
+  }
+  
+  ::v-deep(.slider-dot) {
+    width: 12px !important;
+    height: 12px !important;
+    background-color: #fff !important;
+    border: none !important;
+    top: -5px !important;
   }
 }
 </style>

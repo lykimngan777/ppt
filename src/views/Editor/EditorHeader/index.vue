@@ -55,10 +55,7 @@
         <div class="menu-item"><IconHamburgerButton class="icon" /></div>
       </Popover>
 
-      <div class="undo-redo">
-        <div class="menu-item icon-only" v-tooltip="$t('canvasTool.undo')" :class="{ 'disable': !canUndo }" @click="undo()"><IconBack /></div>
-        <div class="menu-item icon-only" v-tooltip="$t('canvasTool.redo')" :class="{ 'disable': !canRedo }" @click="redo()"><IconNext /></div>
-      </div>
+
 
       <div class="title">
         <Input 
@@ -186,34 +183,33 @@ const openAIPPTDialog = () => {
   border-bottom: 1px solid $borderColor;
   display: flex;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 20px;
   color: $textColor;
+  font-family: $uiFont;
 }
 .left, .right {
   display: flex;
   align-items: center;
 }
 
-.undo-redo {
-  display: flex;
-  margin: 0 16px;
-  gap: 4px;
+.left {
+  gap: 24px;
 }
 
 .menu-item {
-  height: 36px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  padding: 0 12px;
+  padding: 0 8px;
   border-radius: $borderRadius;
   cursor: pointer;
   transition: all $transitionDelay;
   color: $textColor;
 
   &.icon-only {
-    width: 36px;
+    width: 32px;
     padding: 0;
   }
 
@@ -223,69 +219,49 @@ const openAIPPTDialog = () => {
   }
 
   .icon {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   &:not(.disable):hover {
-    background-color: #2D2D2D;
-    scale: 1.05;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
-.present-group {
-  display: flex;
-  align-items: center;
-  background-color: $themeColor;
-  border-radius: $borderRadius;
-  margin-left: 12px;
-  border: 1px solid #4B5563;
-  transition: all $transitionDelay;
+.title {
+  height: 36px;
+  font-size: 16px;
+  font-weight: 600;
 
-  &:hover {
-    scale: 1.02;
-    filter: brightness(1.1);
-  }
-
-  .present-btn {
-    height: 38px;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    cursor: pointer;
-    font-weight: 600;
-
-    .icon {
-      font-size: 20px;
-      margin-right: 8px;
+  .title-input {
+    width: 240px;
+    height: 100%;
+    
+    ::v-deep(input) {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid $borderColor;
+      color: $textColor;
+      font-family: $uiFont;
     }
   }
-
-  .arrow-btn {
-    height: 38px;
-    width: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid #4B5563;
+  .title-text {
+    min-width: 20px;
+    max-width: 400px;
+    line-height: 36px;
+    padding: 0 12px;
+    border-radius: $borderRadius;
     cursor: pointer;
+    font-family: $uiFont;
 
-    .arrow {
-      font-size: 12px;
+    @include ellipsis-oneline();
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }
 
-.share-btn {
-  border: 1px solid #4B5563;
-  margin-left: 12px;
-  
-  &:hover {
-    background-color: #4B5563;
-  }
-
-  span {
-    margin-left: 6px;
-  }
+.right {
+  gap: 12px;
 }
 
 .save-indicator {
@@ -293,36 +269,72 @@ const openAIPPTDialog = () => {
   align-items: center;
   font-size: 12px;
   color: $textColorSecondary;
-  gap: 4px;
-  margin-right: 12px;
+  gap: 6px;
+  margin-right: 8px;
 }
 
-.title {
+.share-btn {
   height: 36px;
-  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  padding: 0 16px;
+  font-weight: 500;
+  border-radius: $borderRadius;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
 
-  .title-input {
-    width: 240px;
-    height: 100%;
-    
-    ::v-deep(input) {
-      background-color: #2D2D2D;
-      border: 1px solid $borderColor;
-      color: $textColor;
+  span {
+    margin-left: 8px;
+  }
+}
+
+.present-group {
+  display: flex;
+  align-items: center;
+  background-color: $accentColor;
+  border-radius: $borderRadiusPill;
+  transition: all $transitionDelay;
+  overflow: hidden;
+
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px rgba(125, 42, 232, 0.3);
+  }
+
+  .present-btn {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px 0 20px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #fff;
+
+    .icon {
+      font-size: 18px;
+      margin-right: 8px;
     }
   }
-  .title-text {
-    min-width: 20px;
-    max-width: 400px;
-    line-height: 36px;
-    padding: 0 8px;
-    border-radius: $borderRadius;
-    cursor: pointer;
 
-    @include ellipsis-oneline();
+  .arrow-btn {
+    height: 36px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    color: #fff;
 
     &:hover {
-      background-color: #2D2D2D;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .arrow {
+      font-size: 10px;
     }
   }
 }
