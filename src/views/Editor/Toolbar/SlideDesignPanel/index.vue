@@ -519,8 +519,8 @@ const fonts = computed(() => {
   transition: all $transitionDelay;
 
   &:hover {
-    border-color: $themeColor;
-    color: $themeColor;
+    border-color: #0288D1;
+    color: #0288D1;
   }
 
   .content {
@@ -560,7 +560,7 @@ const fonts = computed(() => {
     flex-direction: column;
     justify-content: center;
     padding: 8px;
-    border: 1px solid $borderColor;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: $borderRadius;
   }
 
@@ -588,23 +588,28 @@ const fonts = computed(() => {
     justify-content: center;
     align-items: center;
     display: flex;
-    background-color: rgba($color: #000, $alpha: .25);
+    background-color: rgba($color: #000, $alpha: .6);
     opacity: 0;
     transition: opacity $transitionDelay;
+    border-radius: $borderRadius;
   }
 }
 .option {
   height: 32px;
-  padding: 0 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
   border-radius: $borderRadius;
+  color: $textColor;
 
   &:not(.selected):hover {
-    background-color: rgba($color: $themeColor, $alpha: .05);
+    background-color: #2D2D2D;
     cursor: pointer;
+    color: #fff;
   }
 
   &.selected {
-    color: $themeColor;
+    color: #0288D1;
     font-weight: 700;
   }
 }

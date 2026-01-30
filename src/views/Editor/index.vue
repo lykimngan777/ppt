@@ -93,26 +93,26 @@ usePasteEvent()
   height: 100%;
 }
 .layout-header {
-  height: 40px;
+  height: 56px;
 }
 .layout-content {
-  height: calc(100% - 40px);
+  height: calc(100% - 56px);
   display: flex;
 }
 .layout-content-left {
-  width: 160px;
+  width: 200px;
   height: 100%;
   flex-shrink: 0;
 }
 .layout-content-center {
-  width: calc(100% - 160px - 260px);
+  width: calc(100% - 200px - 280px);
 
   .center-top {
-    height: 40px;
+    height: 48px;
   }
 }
 .layout-content-right {
-  width: 260px;
+  width: 280px;
   height: 100%;
 }
 </style>

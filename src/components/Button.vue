@@ -68,48 +68,48 @@ const handleClick = () => {
   }
 
   &.default {
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
+    background-color: #2D2D2D;
+    border: 1px solid $borderColor;
     color: $textColor;
 
     &:hover {
-      color: $themeColor;
-      border-color: $themeColor;
+      background-color: #3D3D3D;
+      border-color: $accentColor;
     }
   }
   &.primary {
-    background-color: $themeColor;
-    border: 1px solid $themeColor;
+    background-color: #374151;
+    border: 1px solid #374151;
     color: #fff;
 
     &:hover {
-      background-color: $themeHoverColor;
-      border-color: $themeHoverColor;
+      background-color: #4B5563;
+      border-color: #4B5563;
     }
   }
   &.checkbox, &.radio {
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
+    background-color: #2D2D2D;
+    border: 1px solid $borderColor;
     color: $textColor;
 
     &:not(.checked):hover {
-      color: $themeColor;
+      background-color: #3D3D3D;
     }
   }
   &.checked {
     color: #fff;
-    background-color: $themeColor;
-    border-color: $themeColor;
+    background-color: #0288D1;
+    border-color: #0288D1;
 
     &:hover {
-      background-color: $themeHoverColor;
-      border-color: $themeHoverColor;
+      background-color: #039BE5;
+      border-color: #039BE5;
     }
   }
   &.disabled {
-    background-color: #f5f5f5;
-    border: 1px solid #d9d9d9;
-    color: #b7b7b7;
+    background-color: #1A1A1A;
+    border: 1px solid #333;
+    color: #555;
     cursor: default;
   }
 }

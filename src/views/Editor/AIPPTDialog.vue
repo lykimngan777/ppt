@@ -340,11 +340,11 @@ const uploadLocalTemplate = () => {
     line-height: 1.1;
   }
   .subtite {
-    color: #888;
+    color: $textColorSecondary;
     font-size: 12px;
 
     .local {
-      color: $themeColor;
+      color: #0288D1;
       text-decoration: underline;
       cursor: pointer;
     }
@@ -353,16 +353,22 @@ const uploadLocalTemplate = () => {
 .preview {
   pre {
     max-height: 450px;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #f1f1f1;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
+    border: 1px solid $borderColor;
+    border-radius: $borderRadius;
     overflow: auto;
+    color: $textColor;
+    font-family: inherit;
   }
   .outline-view {
     max-height: 450px;
     padding: 10px;
-    margin-bottom: 15px;
-    background-color: #f1f1f1;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
+    border: 1px solid $borderColor;
+    border-radius: $borderRadius;
     overflow: auto;
   }
   .btns {
@@ -381,7 +387,7 @@ const uploadLocalTemplate = () => {
     max-height: 450px;
     overflow: auto;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding-right: 5px;
     @include flex-grid-layout();
   
@@ -389,14 +395,22 @@ const uploadLocalTemplate = () => {
       border: 2px solid $borderColor;
       border-radius: $borderRadius;
       @include flex-grid-layout-children(2, 49%);
+      background-color: #2D2D2D;
+      overflow: hidden;
+      transition: all $transitionDelay;
 
       &.selected {
-        border-color: $themeColor;
+        border-color: #0288D1;
+        box-shadow: 0 0 10px rgba(2, 136, 209, 0.4);
       }
   
       img {
         width: 100%;
         min-height: 175px;
+        opacity: 0.8;
+      }
+      &:hover img {
+        opacity: 1;
       }
     }
   }
@@ -418,20 +432,25 @@ const uploadLocalTemplate = () => {
 
   .recommend {
     font-size: 12px;
-    background-color: #f1f1f1;
+    background-color: #2D2D2D;
+    border: 1px solid $borderColor;
+    color: $textColorSecondary;
     border-radius: $borderRadius;
-    padding: 3px 5px;
-    margin-right: 5px;
-    margin-top: 5px;
+    padding: 4px 8px;
+    margin-right: 6px;
+    margin-top: 6px;
     cursor: pointer;
+    transition: all $transitionDelay;
 
     &:hover {
-      color: $themeColor;
+      background-color: #3D3D3D;
+      color: #fff;
+      border-color: $accentColor;
     }
   }
 }
 .configs {
-  margin-top: 15px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 
@@ -439,31 +458,35 @@ const uploadLocalTemplate = () => {
     font-size: 13px;
     display: flex;
     align-items: center;
+    color: $textColor;
   }
 }
 .count {
   font-size: 12px;
-  color: #999;
+  color: #666;
   margin-right: 10px;
 }
 .submit {
-  height: 20px;
+  height: 24px;
   font-size: 12px;
-  background-color: $themeColor;
+  background-color: #0288D1;
   color: #fff;
   display: flex;
   align-items: center;
-  padding: 0 8px 0 6px;
-  border-radius: $borderRadius;
+  padding: 0 10px 0 8px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all $transitionDelay;
 
   &:hover {
-    background-color: $themeHoverColor;
+    background-color: #039BE5;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
 
   .icon {
-    font-size: 15px;
-    margin-right: 3px;
+    font-size: 14px;
+    margin-right: 4px;
   }
 }
 

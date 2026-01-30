@@ -81,56 +81,61 @@ defineExpose({
 
 <style lang="scss" scoped>
 .input {
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  padding: 0 5px;
+  background-color: #2D2D2D;
+  border: 1px solid $borderColor;
+  padding: 0 8px;
   border-radius: $borderRadius;
-  transition: border-color .25s;
+  transition: all $transitionDelay;
   font-size: 13px;
   display: flex;
+  color: $textColor;
 
   input {
     min-width: 0;
-    height: 30px;
+    height: 32px;
     outline: 0;
     border: 0;
-    line-height: 30px;
+    line-height: 32px;
     vertical-align: top;
-    color: $textColor;
-    padding: 0 5px;
+    color: inherit;
+    background-color: transparent;
+    padding: 0;
     flex: 1;
     font-size: 13px;
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    font-family: inherit;
 
     &::placeholder {
-      color: #bfbfbf;
+      color: #666;
     }
   }
 
   &:not(.disabled):hover, &.focused {
-    border-color: $themeColor;
+    border-color: $accentColor;
+    background-color: #3D3D3D;
   }
 
   &.disabled {
-    background-color: #f5f5f5;
-    border-color: #dcdcdc;
-    color: #b7b7b7;
+    background-color: #1A1A1A;
+    border-color: #333;
+    color: #555;
 
     input {
-      color: #b7b7b7;
+      color: #555;
     }
   }
 
   &.simple {
     border: 0;
+    background-color: transparent;
   }
 
   .prefix, .suffix {
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 30px;
+    line-height: 32px;
     user-select: none;
+    color: #888;
   }
 }
 </style>

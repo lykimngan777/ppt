@@ -104,19 +104,21 @@ defineExpose({
   min-width: 50px;
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 12px 16px;
   font-size: 13px;
   overflow: hidden;
   border-radius: $borderRadius;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, .15);
-  background: #fff;
+  box-shadow: $boxShadow;
+  background: $surfaceBg;
+  border: 1px solid $borderColor;
   pointer-events: all;
   position: relative;
+  color: $textColor;
 
   .icons {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 12px;
 
     .loading-icon {
       animation: loading-icon-spin 1s linear infinite;
@@ -134,7 +136,7 @@ defineExpose({
   }
   .description {
     line-height: 1.5;
-    color: $textColor;
+    color: inherit;
   }
   .title + .description {
     margin-top: 5px;
@@ -146,13 +148,14 @@ defineExpose({
   }
   .close-btn {
     font-size: 15px;
-    color: #666;
+    color: #888;
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: all $transitionDelay;
 
     &:hover {
-      color: $themeColor;
+      color: #fff;
     }
   }
 }

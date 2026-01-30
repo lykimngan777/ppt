@@ -196,7 +196,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
 
   .bar {
     &:hover {
-      background-color: #f0f0f0;
+      background-color: #333;
     }
   }
 
@@ -219,7 +219,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
   height: 4px;
   border-radius: 2px;
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #2D2D2D;
   user-select: none;
   transition: background-color .2s;
 }
@@ -237,13 +237,14 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: #fff;
   outline: 2px solid $themeColor;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: 100;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
 
   &:hover, &:active {
     &::before, &::after {
@@ -259,7 +260,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
     left: 50%;
     bottom: 24px;
     transform: translateX(-50%);
-    background-color: #262626;
+    background-color: #444;
     text-align: center;
     color: #fff;
     border-radius: $borderRadius;
@@ -274,7 +275,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
     bottom: 15px;
     transform: translateX(-50%);
     border: 5px solid transparent;
-    border-top-color: #262626;
+    border-top-color: #444;
   }
 }
 </style>

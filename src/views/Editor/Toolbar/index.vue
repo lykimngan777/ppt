@@ -87,12 +87,13 @@ const currentPanelComponent = computed(() => {
 <style lang="scss" scoped>
 .toolbar {
   border-left: solid 1px $borderColor;
-  background-color: #fff;
+  background-color: $sidebarBg;
   display: flex;
   flex-direction: column;
+  color: $textColor;
 }
 .content {
-  padding: 12px;
+  padding: 16px;
   font-size: 13px;
 
   @include overflow-overlay();

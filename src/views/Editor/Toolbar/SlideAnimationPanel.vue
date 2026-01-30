@@ -89,7 +89,7 @@ const handleMouseLeave = () => {
 .animation-item {
   width: 50%;
   height: 100px;
-  border: solid 1px #d6d6d6;
+  border: solid 1px $borderColor;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -98,11 +98,22 @@ const handleMouseLeave = () => {
   padding: 20px 0 15px 0;
   position: relative;
   cursor: pointer;
+  background-color: transparent;
+  transition: all $transitionDelay;
 
   &.active {
-    border-color: $themeColor;
-    background-color: rgba($color: $themeColor, $alpha: .05);
+    border-color: #0288D1;
+    background-color: rgba(#0288D1, 0.1);
     z-index: 1;
+
+    .animation-text {
+      color: #0288D1;
+      font-weight: 600;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: #2D2D2D;
   }
 
   &:nth-child(2n) {
@@ -115,13 +126,14 @@ const handleMouseLeave = () => {
 .animation-block {
   width: 64px;
   height: 36px;
-  background: #666;
+  background: #333;
   position: relative;
   overflow: hidden;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 2px;
 
   @mixin elAnimation($animationType) {
     content: 'PPTist';
@@ -130,7 +142,7 @@ const handleMouseLeave = () => {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: $themeColor;
+    background-color: #0288D1;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -192,7 +204,7 @@ const handleMouseLeave = () => {
 }
 .animation-text {
   font-size: 12px;
-  color: #333;
+  color: $textColor;
   text-align: center;
 }
 </style>

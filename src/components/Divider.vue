@@ -21,14 +21,14 @@ withDefaults(defineProps<{
   &.horizontal {
     width: 100%;
     margin: 24px 0;
-    border-block-start: 1px solid rgba(5, 5, 5, .06);
+    border-block-start: 1px solid $borderColor;
   }
   &.vertical {
     position: relative;
     height: 1em;
     display: inline-block;
     margin: 0 8px;
-    border-inline-start: 1px solid rgba(5, 5, 5, .06);
+    border-inline-start: 1px solid $borderColor;
   }
 }
 </style>

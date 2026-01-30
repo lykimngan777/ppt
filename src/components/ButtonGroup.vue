@@ -33,7 +33,7 @@ withDefaults(defineProps<{
           content: '';
           width: 1px;
           height: calc(100% + 2px);
-          background-color: $themeColor;
+          background-color: #0288D1;
           position: absolute;
           top: -1px;
           right: -1px;
@@ -62,7 +62,7 @@ withDefaults(defineProps<{
           content: '';
           width: 1px;
           height: calc(100% + 2px);
-          background-color: $themeColor;
+          background-color: #0288D1;
           position: absolute;
           top: -1px;
           right: -1px;

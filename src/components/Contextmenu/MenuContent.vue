@@ -47,7 +47,7 @@ $subMenuWidth: 120px;
 .menu-content {
   width: $menuWidth;
   padding: 5px 0;
-  background: #fff;
+  background: $sidebarBg;
   border: 1px solid $borderColor;
   box-shadow: $boxShadow;
   border-radius: $borderRadius;
@@ -55,14 +55,14 @@ $subMenuWidth: 120px;
   margin: 0;
 }
 .menu-item {
-  padding: 0 20px;
-  color: #333;
+  padding: 0 15px;
+  color: $textColor;
   font-size: 12px;
   transition: all $transitionDelayFast;
   white-space: nowrap;
   height: $menuHeight;
   line-height: $menuHeight;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
 
   &:not(.disable):hover > .menu-item-content > .sub-menu {
@@ -74,20 +74,21 @@ $subMenuWidth: 120px;
   }
 
   &:hover:not(.disable) {
-    background-color: rgba($color: $themeColor, $alpha: .15);
+    background-color: #2D2D2D;
+    color: #fff;
   }
 
   &.divider {
     height: 1px;
     overflow: hidden;
-    margin: 5px;
-    background-color: #e5e5e5;
+    margin: 4px 0;
+    background-color: $borderColor;
     line-height: 0;
     padding: 0;
   }
 
   &.disable {
-    color: #b1b1b1;
+    color: #555;
     cursor: no-drop;
   }
 }
@@ -100,11 +101,11 @@ $subMenuWidth: 120px;
   &.has-children::before {
     content: '';
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-width: 1px;
     border-style: solid;
-    border-color: #666 #666 transparent transparent;
+    border-color: #888 #888 transparent transparent;
     position: absolute;
     right: 0;
     top: 50%;
@@ -114,24 +115,26 @@ $subMenuWidth: 120px;
     content: '';
     display: inline-block;
     width: 1px;
-    height: 24px;
-    background-color: rgba($color: #fff, $alpha: .3);
+    height: 20px;
+    background-color: $borderColor;
     position: absolute;
     right: 18px;
-    top: 3px;
+    top: 5px;
     transform: scale(0);
     transition: transform $transitionDelayFast;
   }
 
   .sub-text {
-    color: #666;
-    opacity: 0.6;
+    color: #888;
+    margin-left: 20px;
+    font-size: 11px;
   }
   .sub-menu {
     width: $subMenuWidth;
     position: absolute;
     display: none;
-    left: 112%;
+    left: 100%;
+    margin-left: 5px;
     top: -6px;
   }
 }

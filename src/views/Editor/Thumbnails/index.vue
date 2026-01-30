@@ -66,9 +66,17 @@
   
             <div class="note-flag" v-if="element.notes && element.notes.length" @click="openNotesPanel()">{{ element.notes.length }}</div>
           </div>
+
+          <div class="transition-name" v-if="index < slides.length - 1 && slides[index + 1].turningMode && slides[index + 1].turningMode !== 'no'">
+            <IconEffects class="icon" /> {{ getTransitionLabel(slides[index + 1].turningMode!) }}
+          </div>
         </div>
       </template>
     </Draggable>
+
+    <div class="add-slide-fixed" @click="createSlide()">
+      <IconPlus class="icon" /> {{ $t('thumbnails.addSlide') }}
+    </div>
 
     <div class="page-number">{{ $t('thumbnails.slideNumber', { index: slideIndex + 1, total: slides.length }) }}</div>
   </div>
@@ -80,6 +88,7 @@ import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { useMainStore, useSlidesStore, useKeyboardStore } from '@/store'
 import type { Slide, SlideTheme } from '@/types/slides'
+import { SLIDE_ANIMATIONS } from '@/configs/animation'
 import { fillDigit } from '@/utils/common'
 import { isElementInViewport } from '@/utils/element'
 import type { ContextmenuItem } from '@/components/Contextmenu/types'
@@ -134,6 +143,11 @@ const {
   removeSectionSlides,
   updateSectionTitle,
 } = useSectionHandler()
+
+const getTransitionLabel = (mode: string) => {
+  const transition = SLIDE_ANIMATIONS.find(item => item.value === mode)
+  return transition ? transition.label : ''
+}
 
 // 页面被切换时
 const thumbnailsRef = useTemplateRef<InstanceType<typeof Draggable>>('thumbnailsRef')
@@ -369,18 +383,20 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
 <style lang="scss" scoped>
 .thumbnails {
   border-right: solid 1px $borderColor;
-  background-color: #fff;
+  background-color: $sidebarBg;
   display: flex;
   flex-direction: column;
   user-select: none;
+  position: relative;
 }
 .add-slide {
-  height: 40px;
-  font-size: 12px;
+  height: 48px;
+  font-size: 13px;
   display: flex;
   flex-shrink: 0;
   border-bottom: 1px solid $borderColor;
   cursor: pointer;
+  color: $textColor;
 
   .btn {
     flex: 1;
@@ -389,11 +405,11 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     align-items: center;
 
     &:hover {
-      background-color: $lightGray;
+      background-color: #252525;
     }
   }
   .select-btn {
-    width: 30px;
+    width: 36px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -401,17 +417,42 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     border-left: 1px solid $borderColor;
 
     &:hover {
-      background-color: $lightGray;
+      background-color: #252525;
     }
   }
 
   .icon {
-    margin-right: 3px;
-    font-size: 14px;
+    margin-right: 6px;
+    font-size: 16px;
   }
 }
+
+.add-slide-fixed {
+  height: 44px;
+  margin: 12px;
+  background-color: $themeColor;
+  color: #fff;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all $transitionDelay;
+  font-weight: 500;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  .icon {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+}
+
 .thumbnail-list {
-  padding: 5px 0;
+  padding: 10px 0;
   flex: 1;
   overflow: auto;
 }
@@ -419,110 +460,76 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 0;
+  padding: 8px 0;
   position: relative;
 
   .thumbnail {
     border-radius: $borderRadius;
-    outline: 2px solid rgba($color: $themeColor, $alpha: .15);
+    outline: 2px solid transparent;
+    box-shadow: $boxShadow;
   }
 
   &.active {
     .label {
-      color: $themeColor;
+      color: #fff;
+      font-weight: 600;
     }
     .thumbnail {
-      outline-color: $themeColor;
+      outline-color: #0288D1;
     }
   }
   &.selected {
     .thumbnail {
-      outline-color: $themeColor;
-    }
-    .note-flag {
-      background-color: $themeColor;
-
-      &::after {
-        border-top-color: $themeColor;
-      }
+      outline-color: #0288D1;
     }
   }
 
-  .note-flag {
-    width: 16px;
-    height: 12px;
-    border-radius: 1px;
-    position: absolute;
-    left: 8px;
-    top: 13px;
-    font-size: 8px;
-    background-color: rgba($color: $themeColor, $alpha: .75);
-    color: #fff;
-    text-align: center;
-    line-height: 12px;
-    cursor: pointer;
-
-    &::after {
-      content: '';
-      width: 0;
-      height: 0;
-      position: absolute;
-      top: 10px;
-      left: 4px;
-      border: 4px solid transparent;
-      border-top-color: rgba($color: $themeColor, $alpha: .75);
-    }
-  }
-  .transition-flag {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    color: $themeColor;
-    font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 4px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .label {
+    font-size: 12px;
+    color: $textColorSecondary;
+    width: 24px;
+    text-align: right;
+    margin-right: 12px;
   }
 }
-.label {
-  font-size: 12px;
-  color: #999;
-  width: 20px;
-  cursor: grab;
 
-  &.offset-left {
-    position: relative;
-    left: -4px;
-  }
-
-  &:active {
-    cursor: grabbing;
+.transition-name {
+  font-size: 10px;
+  color: $textColorSecondary;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  margin: 4px 20px 4px 44px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  
+  .icon {
+    margin-right: 4px;
+    font-size: 12px;
   }
 }
+
 .page-number {
-  height: 40px;
-  font-size: 12px;
-  border-top: 1px solid $borderColor;
-  line-height: 40px;
+  height: 32px;
+  font-size: 11px;
+  line-height: 32px;
   text-align: center;
-  color: #666;
+  color: $textColorSecondary;
+  background-color: rgba(0,0,0,0.2);
 }
+
 .section-title {
   height: 26px;
   font-size: 12px;
   padding: 6px 8px 2px 18px;
-  color: #555;
+  color: $textColorSecondary;
 
   &.contextmenu-active {
-    color: $themeColor;
+    color: #fff;
 
     .text::before {
-      border-bottom-color: $themeColor;
-      border-right-color: $themeColor;
+      border-bottom-color: #fff;
+      border-right-color: #fff;
     }
   }
 
@@ -537,8 +544,8 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
       height: 0;
       border-top: 3px solid transparent;
       border-left: 3px solid transparent;
-      border-bottom: 3px solid #555;
-      border-right: 3px solid #555;
+      border-bottom: 3px solid $textColorSecondary;
+      border-right: 3px solid $textColorSecondary;
       margin-right: 5px;
     }
 
@@ -554,6 +561,8 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     outline: 0;
     padding: 0;
     font-size: 12px;
+    background: transparent;
+    color: #fff;
   }
 }
 </style>

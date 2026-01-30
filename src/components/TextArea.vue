@@ -62,19 +62,20 @@ defineExpose({
 .textarea {
   outline: 0;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
+  background-color: #2D2D2D;
+  border: 1px solid $borderColor;
   border-radius: $borderRadius;
   padding: 10px;
-  transition: border-color .25s;
+  transition: all $transitionDelay;
   box-sizing: border-box;
-  line-height: 1.675;
+  line-height: 1.6;
   resize: none;
-  font-family: -apple-system,BlinkMacSystemFont, 'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  font-family: inherit;
+  color: $textColor;
 
   &:focus {
-    border-color: $themeColor;
-    background-color: #fff;
+    border-color: $accentColor;
+    background-color: #3D3D3D;
   }
 
   &.resizable {
@@ -82,13 +83,13 @@ defineExpose({
   }
 
   &.disabled {
-    background-color: #f5f5f5;
-    border-color: #dcdcdc;
-    color: #b7b7b7;
+    background-color: #1A1A1A;
+    border-color: #333;
+    color: #555;
   }
 
   &::placeholder {
-    color: #bfbfbf;
+    color: #666;
   }
 }
 </style>

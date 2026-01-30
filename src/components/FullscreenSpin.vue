@@ -32,7 +32,7 @@ withDefaults(defineProps<{
   align-items: center;
 
   &.mask {
-    background-color: rgba($color: #f1f1f1, $alpha: .7);
+    background-color: rgba($color: #000, $alpha: .6);
   }
 }
 .spin {
@@ -51,14 +51,14 @@ withDefaults(defineProps<{
 .spinner {
   width: 36px;
   height: 36px;
-  border: 3px solid $themeColor;
+  border: 3px solid #0288D1;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spinner .8s linear infinite;
 }
 .text {
   margin-top: 20px;
-  color: $themeColor;
+  color: $textColor;
 }
 @keyframes spinner {
   0% {

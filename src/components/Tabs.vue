@@ -76,7 +76,8 @@ const emit = defineEmits<{
       cursor: pointer;
 
       &.active {
-        border-bottom: 2px solid var(--color, $themeColor);
+        border-bottom: 2px solid var(--color, $accentColor);
+        color: #fff;
       }
       &.disabled {
         opacity: 0.35;
@@ -86,8 +87,8 @@ const emit = defineEmits<{
   }
 
   &.card {
-    height: 40px;
-    font-size: 12px;
+    height: 48px;
+    font-size: 13px;
     flex-shrink: 0;
 
     .tab {
@@ -95,17 +96,25 @@ const emit = defineEmits<{
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $lightGray;
-      border-bottom: 1px solid $borderColor;
+      background-color: #1a1a1a;
+      border-bottom: 2px solid $borderColor;
       cursor: pointer;
+      color: $textColorSecondary;
+      transition: all $transitionDelay;
 
       &.active {
-        background-color: transparent;
-        border-bottom-color: transparent;
+        background-color: $sidebarBg;
+        border-bottom-color: $accentColor;
+        color: #fff;
+        font-weight: 600;
       }
 
       & + .tab {
         border-left: 1px solid $borderColor;
+      }
+
+      &:hover:not(.active) {
+        background-color: #2D2D2D;
       }
     }
   }

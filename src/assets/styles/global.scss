@@ -1,16 +1,84 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -43,12 +111,12 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #fff;
+  background-color: $surfaceBg;
   color: $textColor;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: $uiFont;
 }
 
 ol,
@@ -56,7 +124,8 @@ ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
@@ -74,7 +143,7 @@ table {
 
 a {
   text-decoration: none;
-  color: $themeColor;
+  color: #0288D1;
 }
 
 img {
@@ -132,8 +201,9 @@ textarea {
   height: 5px;
   background-color: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background-color: #e1e1e1;
+  background-color: #444;
   border-radius: 3px;
 }
 
@@ -141,78 +211,97 @@ textarea {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes slideX {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(0);
   }
 }
+
 @keyframes slideY {
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slideX3D {
   0% {
     transform: translateX(100%) scale(.5);
   }
+
   100% {
     transform: translateX(0);
   }
 }
+
 @keyframes slideY3D {
   0% {
     transform: translateY(100%) scale(.5);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes rotate {
   0% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(0);
   }
 }
+
 @keyframes scaleY {
   0% {
     transform: scaleY(.1);
   }
+
   100% {
     transform: scaleY(1);
   }
 }
+
 @keyframes scaleX {
   0% {
     transform: scaleX(.1);
   }
+
   100% {
     transform: scaleX(1);
   }
 }
+
 @keyframes scale {
   0% {
     transform: scale(.25);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 @keyframes scaleReverse {
   0% {
     transform: scale(2);
   }
+
   100% {
     transform: scale(1);
   }

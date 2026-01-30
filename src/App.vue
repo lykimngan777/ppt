@@ -42,8 +42,22 @@ if (import.meta.env.MODE !== 'development') {
 }
 
 onMounted(async () => {
-  const slides = await api.getMockData('slides')
-  slidesStore.setSlides(slides)
+  const initialSlide: any = {
+    id: 'initial_slide',
+    elements: [],
+    background: {
+      type: 'gradient',
+      gradient: {
+        type: 'linear',
+        colors: [
+          { pos: 0, color: '#0288D1' },
+          { pos: 100, color: '#BFDBFE' },
+        ],
+        rotate: 45,
+      },
+    },
+  }
+  slidesStore.setSlides([initialSlide])
 
   await deleteDiscardedDB()
   snapshotStore.initSnapshotDatabase()

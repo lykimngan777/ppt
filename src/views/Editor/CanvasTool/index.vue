@@ -282,19 +282,17 @@ const openImageLibPanel = () => {
 .canvas-tool {
   position: relative;
   border-bottom: 1px solid $borderColor;
-  background-color: #fff;
+  background-color: $headerBg;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 16px;
   font-size: 13px;
   user-select: none;
+  color: $textColor;
 }
 .left-handler, .more {
   display: flex;
   align-items: center;
-}
-.more-icon {
-  display: none;
 }
 .popover-menu-item {
   display: flex;
@@ -321,35 +319,36 @@ const openImageLibPanel = () => {
   }
 
   .insert-handler-item {
-    height: 30px;
+    height: 32px;
     font-size: 14px;
-    margin: 0 2px;
-    padding: 0 10px;
+    margin: 0 4px;
+    padding: 0 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: $borderRadius;
     overflow: hidden;
     cursor: pointer;
+    transition: all $transitionDelay;
 
     &:not(.group-btn):hover {
-      background-color: #f1f1f1;
+      background-color: #2D2D2D;
     }
 
     &.active {
-      background-color: #f1f1f1;
+      background-color: #2D2D2D;
+      color: #fff;
     }
 
     .icon {
-      margin-right: 4px;
+      margin-right: 6px;
     }
 
     &.group-btn {
-      margin-right: 6px;
       padding: 0;
 
       &:hover {
-        background-color: #f3f3f3;
+        background-color: #2D2D2D;
       }
 
       .group-btn-main {
@@ -357,10 +356,10 @@ const openImageLibPanel = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 5px;
+        padding: 0 8px;
 
         &:hover {
-          background-color: #e9e9e9;
+          background-color: #3D3D3D;
         }
       }
 
@@ -369,18 +368,18 @@ const openImageLibPanel = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
-        padding: 0 1px;
+        font-size: 10px;
+        padding: 0 4px;
   
         &:hover {
-          background-color: #e9e9e9;
+          background-color: #3D3D3D;
         }
       }
     }
   }
 }
 .handler-item {
-  height: 30px;
+  height: 32px;
   font-size: 14px;
   margin: 0 2px;
   display: flex;
@@ -389,70 +388,35 @@ const openImageLibPanel = () => {
   border-radius: $borderRadius;
   overflow: hidden;
   cursor: pointer;
+  transition: all $transitionDelay;
 
   &.disable {
-    opacity: .5;
+    opacity: .3;
   }
-}
-.left-handler, .right-handler {
-  .handler-item {
-    padding: 0 8px;
 
-    &.active,
-    &:not(.disable):hover {
-      background-color: #f1f1f1;
-    }
+  &:not(.disable):hover {
+    background-color: #2D2D2D;
   }
 }
 .right-handler {
   display: flex;
   align-items: center;
 
-  .text {
-    display: inline-block;
-    width: 40px;
-    text-align: center;
-    cursor: pointer;
-  }
-
   .viewport-size {
-    font-size: 13px;
+    padding: 0 8px;
   }
 }
 
 @media screen and (width <= 1600px) {
   .add-element-handler {
     .insert-handler-item {
-      .icon {
-        margin-right: 0;
-      }
       .text {
         display: none;
       }
+      .icon {
+        margin-right: 0;
+      }
     }
-  }
-}
-@media screen and (width <= 1366px) {
-  .add-element-handler {
-    .insert-handler-item {
-      padding: 0 6px;
-    }
-  }
-}
-@media screen and (width <= 1200px) {
-  .right-handler .text {
-    display: none;
-  }
-  .more > .handler-item {
-    display: none;
-  }
-  .more-icon {
-    display: block;
-  }
-}
-@media screen and (width <= 1000px) {
-  .left-handler, .right-handler {
-    display: none;
   }
 }
 </style>

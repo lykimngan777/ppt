@@ -228,7 +228,7 @@ const emitBatchRichTextCommand = (action: RichTextAction[]) => {
 .preset-style-item {
   width: 50%;
   height: 50px;
-  border: solid 1px #d6d6d6;
+  border: solid 1px $borderColor;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -236,10 +236,13 @@ const emitBatchRichTextCommand = (action: RichTextAction[]) => {
   position: relative;
   cursor: pointer;
   transition: all $transitionDelay;
+  color: $textColor;
+  background-color: transparent;
 
   &:hover {
-    border-color: $themeColor;
-    color: $themeColor;
+    border-color: #0288D1;
+    color: #0288D1;
+    background-color: #2D2D2D;
     z-index: 1;
   }
 

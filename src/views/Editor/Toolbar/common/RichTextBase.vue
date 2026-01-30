@@ -398,7 +398,7 @@ const execAI = async (command: string) => {
     height: 16px;
     display: inline-block;
     margin-top: 8px;
-    border: 1px solid $themeColor;
+    border: 1px solid #0288D1;
     border-top-color: transparent;
     border-radius: 50%;
     animation: spinner .8s linear infinite;
@@ -423,17 +423,19 @@ const execAI = async (command: string) => {
 }
 .list-wrap {
   width: 176px;
-  color: #666;
+  color: $textColor;
   padding: 8px;
   margin: -12px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  background-color: $sidebarBg;
 }
 .list {
-  background-color: $lightGray;
+  background-color: #2D2D2D;
   padding: 4px 4px 4px 20px;
   cursor: pointer;
+  transition: all $transitionDelay;
 
   &:not(:nth-child(3n)) {
     margin-right: 8px;
@@ -446,10 +448,11 @@ const execAI = async (command: string) => {
   }
 
   &:hover {
-    color: $themeColor;
+    color: #0288D1;
+    background-color: #3D3D3D;
 
     span {
-      background-color: $themeColor;
+      background-color: #0288D1;
     }
   }
 }
@@ -466,7 +469,7 @@ const execAI = async (command: string) => {
     display: inline-block;
     position: absolute;
     top: 8px;
-    background-color: #666;
+    background-color: #888;
   }
 }
 .popover-btn {

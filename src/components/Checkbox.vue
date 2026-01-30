@@ -42,24 +42,31 @@ const handleChange = (e: Event) => {
 
   &:not(.disabled).checked {
     .checkbox-input {
-      background-color: $themeColor;
-      border-color: $themeColor;
+      background-color: #0288D1;
+      border-color: #0288D1;
     }
     .checkbox-input::after {
       transform: rotate(45deg) scaleY(1);
     }
 
     .checkbox-label {
-      color: $themeColor;
+      color: #0288D1;
+    }
+  }
+
+  &:not(.disabled):hover:not(.checked) {
+    .checkbox-input {
+      border-color: #0288D1;
     }
   }
 
   &.disabled {
-    color: #b7b7b7;
+    color: #555;
     cursor: default;
 
     .checkbox-input {
-      background-color: #f5f5f5;
+      background-color: #1A1A1A;
+      border-color: #333;
     }
   }
 }
@@ -67,13 +74,13 @@ const handleChange = (e: Event) => {
 .checkbox-input {
   display: inline-block;
   position: relative;
-  border: 1px solid #d9d9d9;
-  border-radius: $borderRadius;
+  border: 1px solid #444;
+  border-radius: 4px;
   width: 16px;
   height: 16px;
-  background-color: #fff;
+  background-color: #2D2D2D;
   vertical-align: middle;
-  transition: border-color .15s cubic-bezier(.71, -.46, .29, 1.46), background-color .15s cubic-bezier(.71, -.46, .29, 1.46);
+  transition: all $transitionDelayFast;
   z-index: 1;
 
   &::after {

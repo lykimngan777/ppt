@@ -12,6 +12,13 @@ export interface PresetTheme {
 
 export const PRESET_THEMES: PresetTheme[] = [
   {
+    background: '#0288D1',
+    fontColor: '#ffffff',
+    borderColor: '#ffffff',
+    fontname: 'Inter',
+    colors: ['#0288D1', '#BFDBFE', '#374151', '#4B5563', '#9CA3AF', '#64748B'],
+  },
+  {
     background: '#ffffff',
     fontColor: '#333333',
     borderColor: '#41719c',

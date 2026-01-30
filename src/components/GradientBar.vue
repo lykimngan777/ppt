@@ -126,7 +126,8 @@ const addPoint = (e: MouseEvent) => {
 
   .bar {
     height: 16px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid $borderColor;
+    border-radius: 2px;
   }
   .point {
     width: 10px;
@@ -135,14 +136,15 @@ const addPoint = (e: MouseEvent) => {
     position: absolute;
     top: 0;
     border: 2px solid #fff;
-    outline: 1px solid #d9d9d9;
-    box-shadow: 0 0 2px 2px #d9d9d9;
+    outline: 1px solid #000;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
     border-radius: 1px;
     cursor: pointer;
 
     &.active {
-      outline: 1px solid $themeColor;
-      box-shadow: 0 0 2px 2px $themeColor;
+      outline: 1px solid $accentColor;
+      box-shadow: 0 0 4px $accentColor;
+      z-index: 10;
     }
   }
 }

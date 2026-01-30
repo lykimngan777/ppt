@@ -112,18 +112,19 @@ const handleFocus = (e: Event) => {
 
 <style lang="scss" scoped>
 .number-input {
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  padding: 0 0 0 5px;
+  background-color: #2D2D2D;
+  border: 1px solid $borderColor;
+  padding: 0 0 0 8px;
   border-radius: $borderRadius;
-  transition: border-color .25s;
+  transition: all $transitionDelay;
   font-size: 13px;
   display: inline-flex;
+  color: $textColor;
 
   .input-wrap {
     flex: 1;
-    color: $textColor;
-    padding: 0 0 0 5px;
+    color: inherit;
+    padding: 0;
     position: relative;
   }
   &:not(.disabled) .input-wrap:hover .handlers {
@@ -137,12 +138,14 @@ const handleFocus = (e: Event) => {
     right: 0;
     display: flex;
     flex-direction: column;
-    font-size: 6px;
-    color: #999;
+    font-size: 8px;
+    color: #888;
     opacity: 0;
     user-select: none;
     transition: opacity .25s;
-    background-color: #fff;
+    background-color: #333;
+    border-top-right-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
 
     .handler {
       width: 100%;
@@ -150,44 +153,52 @@ const handleFocus = (e: Event) => {
       display: flex;
       justify-content: center;
       align-items: center;
-      border-left: 1px solid #d9d9d9;
+      border-left: 1px solid $borderColor;
       cursor: pointer;
 
       & + .handler {
-        border-top: 1px solid #d9d9d9;
+        border-top: 1px solid $borderColor;
       }
 
       &:hover {
-        color: $themeColor;
+        color: #0288D1;
+        background-color: #444;
       }
     }
   }
   input {
-    width: calc(100% - 5px);
+    width: 100%;
     min-width: 0;
     padding: 0;
-    height: 30px;
-    line-height: 30px;
+    height: 32px;
+    line-height: 32px;
     outline: 0;
     border: 0;
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
 
     &::placeholder {
-      color: #bfbfbf;
+      color: #666;
     }
   }
 
   &:not(.disabled):hover, &.focused {
-    border-color: $themeColor;
+    border-color: $accentColor;
+    background-color: #3D3D3D;
   }
 
   &.disabled {
-    background-color: #f5f5f5;
-    border-color: #dcdcdc;
-    color: #b7b7b7;
+    background-color: #1A1A1A;
+    border-color: #333;
+    color: #555;
 
     input {
-      color: #b7b7b7;
+      color: #555;
+    }
+
+    .handlers {
+      display: none;
     }
   }
 
@@ -195,8 +206,9 @@ const handleFocus = (e: Event) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 30px;
+    line-height: 32px;
     user-select: none;
+    color: #888;
   }
 }
 </style>

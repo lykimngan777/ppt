@@ -29,7 +29,8 @@ const emit = defineEmits<{
   }
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: #2D2D2D;
+    color: #fff;
   }
   & + .popover-menu-item {
     margin-top: 2px;

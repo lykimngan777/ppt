@@ -94,29 +94,39 @@ const onClickMask = () => {
 
 .mask {
   position: absolute;
-  background: rgba(0, 0, 0, .25);
+  background: rgba(0, 0, 0, .6);
 }
 
 .modal-content {
   z-index: 5001;
-  padding: 20px;
-  background: #fff;
+  padding: 24px;
+  background: $surfaceBg;
+  border: 1px solid $borderColor;
   border-radius: $borderRadius;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+  box-shadow: $boxShadow;
   position: relative;
+  color: $textColor;
 }
 
 .close-btn {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   cursor: pointer;
+  color: #888;
+  transition: all $transitionDelay;
+  border-radius: $borderRadius;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
 }
 
 .modal-fade-enter-active {

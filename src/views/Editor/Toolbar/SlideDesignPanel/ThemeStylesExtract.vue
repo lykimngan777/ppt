@@ -193,17 +193,21 @@ const getHexColor = (color: string) => {
 }
 .config-item {
   padding: 12px 0 10px;
-  border-bottom: 1px dashed #f5f5f5;
+  border-bottom: 1px dashed $borderColor;
   font-size: 13px;
 }
 .label {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
+  color: $textColor;
+  font-weight: 600;
 
   .tip {
-    font-size: 12px;
-    color: #999;
+    font-size: 11px;
+    color: #666;
+    margin-left: 5px;
+    font-weight: normal;
   }
 }
 .values {
@@ -225,23 +229,23 @@ const getHexColor = (color: string) => {
 
         &::after {
           content: '';
-          width: 24px;
-          height: 2px;
+          width: 20px;
+          height: 1px;
           position: absolute;
           top: 11px;
-          left: -1px;
+          left: 1px;
           transform: rotate(-45deg);
-          background-color: #000;
+          background-color: #fff;
         }
         &::before {
           content: '';
-          width: 24px;
-          height: 2px;
+          width: 20px;
+          height: 1px;
           position: absolute;
           top: 11px;
-          left: -1px;
+          left: 1px;
           transform: rotate(45deg);
-          background-color: #000;
+          background-color: #fff;
         }
       }
     }
@@ -253,7 +257,7 @@ const getHexColor = (color: string) => {
     justify-content: space-between;
 
     & + .value-wrap {
-      margin-top: 3px;
+      margin-top: 5px;
     }
   }
   .handler {
@@ -262,11 +266,13 @@ const getHexColor = (color: string) => {
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
-    margin-left: 10px;
+    margin-left: 15px;
+    color: $textColorSecondary;
 
     .state {
       opacity: 0;
       font-size: 15px;
+      color: #0288D1;
 
       &.active {
         opacity: 1;
@@ -275,9 +281,10 @@ const getHexColor = (color: string) => {
 
     .config-btn {
       cursor: pointer;
+      transition: all $transitionDelay;
 
       &:hover {
-        color: $themeColor;
+        color: #fff;
       }
     }
   }
@@ -287,9 +294,10 @@ const getHexColor = (color: string) => {
     line-height: 25px;
     text-align: center;
     border: 1px solid $borderColor;
+    background-color: #1a1a1a;
     font-size: 12px;
     padding: 0 5px;
-    border-radius: $borderRadius;
+    border-radius: 4px;
     @include ellipsis-oneline();
   }
 }

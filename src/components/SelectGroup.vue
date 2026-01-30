@@ -29,7 +29,7 @@
     &:hover {
       & + .select-wrap {
         .select {
-          border-left-color: $themeColor;
+          border-left-color: $accentColor;
         }
       }
     }

@@ -22,24 +22,27 @@ import { HOTKEY_DOC } from '@/configs/hotkey'
   height: 100%;
   overflow: auto;
   font-size: 12px;
-  margin: 0 -15px;
-  padding: 0 15px 15px;
+  margin: 0;
+  padding: 0 0 15px;
+  color: $textColor;
 }
 .title {
   font-size: 14px;
   font-weight: 700;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 25px 0 5px 0;
+  border-bottom: 1px solid $borderColor;
+  padding: 25px 0 8px 0;
+  color: $textColor;
 
   &:first-child {
     padding-top: 0;
   }
 }
 .hotkey-item {
-  border-bottom: 1px solid #e5e5e5;
-  padding: 15px 0 5px 0;
+  border-bottom: 1px solid $borderColor;
+  padding: 12px 0 8px 0;
   display: flex;
   align-items: center;
+  color: $textColorSecondary;
 }
 .label {
   width: 140px;

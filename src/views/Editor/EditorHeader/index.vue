@@ -55,6 +55,11 @@
         <div class="menu-item"><IconHamburgerButton class="icon" /></div>
       </Popover>
 
+      <div class="undo-redo">
+        <div class="menu-item icon-only" v-tooltip="$t('canvasTool.undo')" :class="{ 'disable': !canUndo }" @click="undo()"><IconBack /></div>
+        <div class="menu-item icon-only" v-tooltip="$t('canvasTool.redo')" :class="{ 'disable': !canRedo }" @click="redo()"><IconNext /></div>
+      </div>
+
       <div class="title">
         <Input 
           class="title-input" 
@@ -73,9 +78,17 @@
     </div>
 
     <div class="right">
-      <div class="group-menu-item">
-        <div class="menu-item" v-tooltip="$t('header.startFromCurrent') + '（F5）'" @click="enterScreening()">
-          <IconPpt class="icon" />
+      <div class="save-indicator">
+        <IconCloud /> <span>Đã lưu</span>
+      </div>
+      
+      <div class="menu-item share-btn">
+        <IconShare /> <span>Share</span>
+      </div>
+
+      <div class="present-group">
+        <div class="present-btn" @click="enterScreening()">
+          <IconPlay class="icon" /> <span>Present</span>
         </div>
         <Popover trigger="click" center>
           <template #content>
@@ -84,12 +97,6 @@
           </template>
           <div class="arrow-btn"><IconDown class="arrow" /></div>
         </Popover>
-      </div>
-      <div class="menu-item" v-tooltip="$t('header.aippt')" @click="openAIPPTDialog(); mainMenuVisible = false">
-        <span class="text ai">AI</span>
-      </div>
-      <div class="menu-item" v-tooltip="$t('header.export')" @click="setDialogForExport('pptx')">
-        <IconDownload class="icon" />
       </div>
 
     </div>
@@ -110,10 +117,11 @@
 <script lang="ts" setup>
 import { nextTick, ref, useTemplateRef } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useMainStore, useSlidesStore } from '@/store'
+import { useMainStore, useSlidesStore, useSnapshotStore } from '@/store'
 import useScreening from '@/hooks/useScreening'
 import useImport from '@/hooks/useImport'
 import useSlideHandler from '@/hooks/useSlideHandler'
+import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 import type { DialogForExportTypes } from '@/types/export'
 
 import HotkeyDoc from './HotkeyDoc.vue'
@@ -128,9 +136,11 @@ import Divider from '@/components/Divider.vue'
 const mainStore = useMainStore()
 const slidesStore = useSlidesStore()
 const { title } = storeToRefs(slidesStore)
-const { enterScreening, enterScreeningFromStart } = useScreening()
+const { canUndo, canRedo } = storeToRefs(useSnapshotStore())
 const { importSpecificFile, importPPTXFile, importJSON, exporting } = useImport()
 const { resetSlides } = useSlideHandler()
+const { undo, redo } = useHistorySnapshot()
+const { enterScreening, enterScreeningFromStart } = useScreening()
 
 const mainMenuVisible = ref(false)
 const hotkeyDrawerVisible = ref(false)
@@ -170,197 +180,150 @@ const openAIPPTDialog = () => {
 
 <style lang="scss" scoped>
 .editor-header {
-  background-color: #fff;
+  height: 56px;
+  background-color: $headerBg;
   user-select: none;
   border-bottom: 1px solid $borderColor;
   display: flex;
   justify-content: space-between;
-  padding: 0 5px;
+  padding: 0 16px;
+  color: $textColor;
 }
 .left, .right {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
+
+.undo-redo {
+  display: flex;
+  margin: 0 16px;
+  gap: 4px;
+}
+
 .menu-item {
-  height: 30px;
+  height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: $borderRadius;
   cursor: pointer;
+  transition: all $transitionDelay;
+  color: $textColor;
+
+  &.icon-only {
+    width: 36px;
+    padding: 0;
+  }
+
+  &.disable {
+    opacity: .3;
+    cursor: default;
+  }
 
   .icon {
     font-size: 18px;
-    color: #666;
-  }
-  .text {
-    width: 18px;
-    text-align: center;
-    font-size: 17px;
-  }
-  .ai {
-    background: linear-gradient(270deg, #d897fd, #33bcfc);
-    background-clip: text;
-    color: transparent;
-    font-weight: 700;
   }
 
-  &:hover {
-    background-color: #f1f1f1;
+  &:not(.disable):hover {
+    background-color: #2D2D2D;
+    scale: 1.05;
   }
 }
-.popover-menu-item {
-  display: flex;
-  padding: 8px 10px;
 
-  .icon {
-    font-size: 18px;
-    margin-right: 10px;
-  }
-}
-.statement {
-  font-size: 12px;
-  color: #999;
-  padding: 8px 10px;
-  font-style: italic;
-}
-.main-menu {
-  width: 300px;
-}
-.ai-menu {
-  background: linear-gradient(270deg, #f8edff, #d4f1ff);
-  color: $themeColor;
-  border-radius: $borderRadius;
-  padding: 12px 16px;
+.present-group {
   display: flex;
   align-items: center;
-  cursor: pointer;
-
-  .icon {
-    font-size: 22px;
-    margin-right: 16px;
-  }
-  .aippt-content {
-    display: flex;
-    flex-direction: column;
-  }
-  .aippt {
-    font-weight: 700;
-    font-size: 16px;
-
-    span {
-      background: linear-gradient(270deg, #d897fd, #33bcfc);
-      background-clip: text;
-      color: transparent;
-    }
-  }
-  .aippt-subtitle {
-    font-size: 12px;
-    color: #777;
-    margin-top: 5px;
-  }
-}
-
-.import-section {
-  padding: 5px 0;
-
-  .import-label {
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 6px;
-  }
-  .import-grid {
-    display: flex;
-    gap: 8px;
-    justify-content: space-between;
-  }
-  .import-block {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 8px;
-    border-radius: $borderRadius;
-    border: 1px solid $borderColor;
-    transition: background-color .2s;
-    cursor: pointer;
-  
-    &:hover {
-      background-color: #f1f1f1;
-    }
-    .icon {
-      font-size: 24px;
-      margin-bottom: 2px;
-    }
-    .label {
-      font-size: 12px;
-      text-align: center;
-    }
-    .sub-label {
-      font-size: 10px;
-      color: #999;
-    }
-  }
-}
-
-.group-menu-item {
-  height: 30px;
-  display: flex;
-  margin: 0 8px;
-  padding: 0 2px;
+  background-color: $themeColor;
   border-radius: $borderRadius;
+  margin-left: 12px;
+  border: 1px solid #4B5563;
+  transition: all $transitionDelay;
 
   &:hover {
-    background-color: #f1f1f1;
+    scale: 1.02;
+    filter: brightness(1.1);
   }
 
-  .menu-item {
-    padding: 0 3px;
+  .present-btn {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    cursor: pointer;
+    font-weight: 600;
+
+    .icon {
+      font-size: 20px;
+      margin-right: 8px;
+    }
   }
+
   .arrow-btn {
+    height: 38px;
+    width: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-left: 1px solid #4B5563;
     cursor: pointer;
+
+    .arrow {
+      font-size: 12px;
+    }
   }
 }
+
+.share-btn {
+  border: 1px solid #4B5563;
+  margin-left: 12px;
+  
+  &:hover {
+    background-color: #4B5563;
+  }
+
+  span {
+    margin-left: 6px;
+  }
+}
+
+.save-indicator {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: $textColorSecondary;
+  gap: 4px;
+  margin-right: 12px;
+}
+
 .title {
-  height: 30px;
-  margin-left: 2px;
-  font-size: 13px;
+  height: 36px;
+  font-size: 14px;
 
   .title-input {
-    width: 200px;
+    width: 240px;
     height: 100%;
-    padding-left: 0;
-    padding-right: 0;
-
+    
     ::v-deep(input) {
-      height: 28px;
-      line-height: 28px;
+      background-color: #2D2D2D;
+      border: 1px solid $borderColor;
+      color: $textColor;
     }
   }
   .title-text {
     min-width: 20px;
     max-width: 400px;
-    line-height: 30px;
-    padding: 0 6px;
+    line-height: 36px;
+    padding: 0 8px;
     border-radius: $borderRadius;
     cursor: pointer;
 
     @include ellipsis-oneline();
 
     &:hover {
-      background-color: #f1f1f1;
+      background-color: #2D2D2D;
     }
   }
-}
-.github-link {
-  display: inline-block;
-  height: 30px;
 }
 </style>

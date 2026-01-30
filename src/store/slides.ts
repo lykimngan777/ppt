@@ -32,10 +32,10 @@ export const useSlidesStore = defineStore('slides', {
   state: (): SlidesState => ({
     title: 'Bản thuyết trình chưa đặt tên', // 幻灯片标题
     theme: {
-      themeColors: ['#5b9bd5', '#ed7d31', '#a5a5a5', '#ffc000', '#4472c4', '#70ad47'],
-      fontColor: '#333',
-      fontName: '',
-      backgroundColor: '#fff',
+      themeColors: ['#0288D1', '#374151', '#4B5563', '#9CA3AF', '#64748B', '#E5E7EB'],
+      fontColor: '#ffffff',
+      fontName: 'Inter',
+      backgroundColor: '#ffffff',
       shadow: {
         h: 3,
         v: 3,
@@ -44,7 +44,7 @@ export const useSlidesStore = defineStore('slides', {
       },
       outline: {
         width: 2,
-        color: '#525252',
+        color: '#4B5563',
         style: 'solid',
       },
     }, // 主题样式

@@ -141,22 +141,24 @@ const handleSelect = (option: SelectOption) => {
   height: 32px;
   padding-right: 32px;
   border-radius: $borderRadius;
-  transition: border-color .25s;
+  transition: all $transitionDelay;
   font-size: 13px;
   user-select: none;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
+  background-color: #2D2D2D;
+  border: 1px solid $borderColor;
+  color: $textColor;
   position: relative;
   cursor: pointer;
 
   &:not(.disabled):hover {
-    border-color: $themeColor;
+    border-color: $accentColor;
+    background-color: #3D3D3D;
   }
 
   &.disabled {
-    background-color: #f5f5f5;
-    border-color: #dcdcdc;
-    color: #b7b7b7;
+    background-color: #1A1A1A;
+    border-color: #333;
+    color: #555;
     cursor: default;
   }
 
@@ -175,31 +177,33 @@ const handleSelect = (option: SelectOption) => {
   text-align: left;
   font-size: 13px;
   user-select: none;
+  background-color: $sidebarBg;
 }
 .option {
   height: 32px;
   line-height: 32px;
   padding: 0 5px;
   border-radius: $borderRadius;
+  color: $textColor;
   @include ellipsis-oneline();
 
   &.disabled {
-    color: #b7b7b7;
+    color: #555;
   }
   &:not(.disabled, .selected):hover {
-    background-color: rgba($color: $themeColor, $alpha: .05);
+    background-color: #2D2D2D;
     cursor: pointer;
   }
 
   &.selected {
-    color: $themeColor;
+    color: #0288D1;
     font-weight: 700;
   }
 }
 .icon {
   width: 32px;
   height: 30px;
-  color: #bfbfbf;
+  color: #888;
   position: absolute;
   top: 0;
   right: 0;

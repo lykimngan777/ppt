@@ -1,15 +1,25 @@
-$themeColor: #d14424;
-$themeHoverColor: lighten($themeColor, 8%);
-$textColor: #41464b;
-$borderColor: #e5e7eb;
-$lightGray: #f9f9f9;
+$themeColor: #374151;
+$themeHoverColor: #4B5563;
+$textColor: #E5E7EB;
+$textColorSecondary: #6B7280;
+$borderColor: #4B5563;
+$lightGray: #252525;
+$sidebarBg: #171717;
+$headerBg: #1F1F1F;
+$surfaceBg: #252525;
+$accentColor: #9CA3AF;
+$accentTeal: #64748B;
 
-$boxShadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);
+$slideGradient: linear-gradient(135deg, #0288D1 0%, #BFDBFE 100%);
+
+$boxShadow: 0 4px 6px -1px rgba(0, 0, 0, .3), 0 2px 4px -2px rgba(0, 0, 0, .3);
 
 $transitionDelay: .2s;
 $transitionDelayFast: .1s;
 $transitionDelaySlow: .3s;
 
-$borderRadius: 2px;
+$borderRadius: 8px;
 
-$textElementFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$uiFont: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$headingFont: 'Playfair Display', serif;
+$textElementFont: 'Inter', sans-serif;

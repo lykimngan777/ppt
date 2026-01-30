@@ -233,12 +233,13 @@ const startResize = (e: MouseEvent) => {
 <style lang="scss" scoped>
 .moveable-panel {
   position: fixed;
-  background-color: #fff;
+  background-color: $surfaceBg;
   box-shadow: $boxShadow;
   border: 1px solid $borderColor;
   border-radius: $borderRadius;
   display: flex;
   flex-direction: column;
+  color: $textColor;
 }
 .resizer {
   width: 10px;
@@ -258,21 +259,25 @@ const startResize = (e: MouseEvent) => {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-left-color: #e1e1e1;
+    border-left-color: $borderColor;
   }
 }
 .header {
   height: 40px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid $borderColor;
   user-select: none;
   cursor: move;
+  background-color: #2D2D2D;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
 }
 .title {
   flex: 1;
   font-size: 13px;
   padding-left: 10px;
+  font-weight: 600;
 }
 .close-btn {
   width: 40px;
@@ -280,12 +285,14 @@ const startResize = (e: MouseEvent) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: #888;
   font-size: 13px;
   cursor: pointer;
+  transition: all $transitionDelay;
 
   &:hover {
-    color: $themeColor;
+    color: #fff;
+    background-color: #3D3D3D;
   }
 }
 .content {
