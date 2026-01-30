@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { useSlidesStore, useMainStore } from '@/store'
@@ -59,17 +59,6 @@ const applyAllSlide = () => {
   addHistorySnapshot()
 }
 
-const autoPlayItem = ref('')
-
-onMounted(async () => {
-  for (const item of animations) {
-    if (item.value === 'no' || item.value === 'random') continue
-    autoPlayItem.value = item.value
-    await new Promise(resolve => setTimeout(resolve, 800))
-  }
-  autoPlayItem.value = ''
-})
-
 const handleMouseEnter = (mode: TurningMode) => {
   if (mode === 'no' || mode === 'random') return
   mainStore.setPreviewTransition(mode)
@@ -84,11 +73,11 @@ const handleMouseLeave = () => {
 .animation-pool {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .animation-item {
   width: 50%;
-  height: 100px;
+  height: 110px;
   border: solid 1px $borderColor;
   box-sizing: border-box;
   display: flex;
@@ -102,18 +91,18 @@ const handleMouseLeave = () => {
   transition: all $transitionDelay;
 
   &.active {
-    border-color: #0288D1;
-    background-color: rgba(#0288D1, 0.1);
+    border-color: $accentTeal;
+    background-color: rgba($accentTeal, 0.05);
     z-index: 1;
 
     .animation-text {
-      color: #0288D1;
-      font-weight: 600;
+      color: $accentTeal;
+      font-weight: 700;
     }
   }
 
   &:hover:not(.active) {
-    background-color: #2D2D2D;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   &:nth-child(2n) {
@@ -124,83 +113,48 @@ const handleMouseLeave = () => {
   }
 }
 .animation-block {
-  width: 64px;
-  height: 36px;
-  background: #333;
+  width: 72px;
+  height: 40px;
+  background: #252525;
   position: relative;
   overflow: hidden;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   @mixin elAnimation($animationType) {
-    content: 'PPTist';
-    width: 100%;
-    height: 100%;
+    content: 'Canva';
+    width: 102%; // Slightly larger to cover borders nicely
+    height: 102%;
     position: absolute;
-    left: 0;
-    top: 0;
-    background-color: #0288D1;
+    left: -1%;
+    top: -1%;
+    background-color: $accentTeal;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: $animationType $transitionDelaySlow linear;
+    font-size: 10px;
+    font-weight: 700;
+    animation: $animationType 2s infinite; // Changed to infinite for continuous autoplay
   }
 
-  &.fade:hover, &.fade.auto-play {
-    &::after {
-      @include elAnimation(fade);
-    }
+  &.fade::after { @include elAnimation(fade); }
+  &.slideX::after { @include elAnimation(slideX); }
+  &.slideY::after { @include elAnimation(slideY); }
+  &.slideX3D::after { @include elAnimation(slideX3D); }
+  &.slideY3D::after { @include elAnimation(slideY3D); }
+  &.rotate::after { 
+    transform-origin: 0 0;
+    @include elAnimation(rotate);
   }
-  &.slideX:hover, &.slideX.auto-play {
-    &::after {
-      @include elAnimation(slideX);
-    }
-  }
-  &.slideY:hover, &.slideY.auto-play {
-    &::after {
-      @include elAnimation(slideY);
-    }
-  }
-  &.slideX3D:hover, &.slideX3D.auto-play {
-    &::after {
-      @include elAnimation(slideX3D);
-    }
-  }
-  &.slideY3D:hover, &.slideY3D.auto-play {
-    &::after {
-      @include elAnimation(slideY3D);
-    }
-  }
-  &.rotate:hover, &.rotate.auto-play {
-    &::after {
-      transform-origin: 0 0;
-      @include elAnimation(rotate);
-    }
-  }
-  &.scaleY:hover, &.scaleY.auto-play {
-    &::after {
-      @include elAnimation(scaleY);
-    }
-  }
-  &.scaleX:hover, &.scaleX.auto-play {
-    &::after {
-      @include elAnimation(scaleX);
-    }
-  }
-  &.scale:hover, &.scale.auto-play {
-    &::after {
-      @include elAnimation(scale);
-    }
-  }
-  &.scaleReverse:hover, &.scaleReverse.auto-play {
-    &::after {
-      @include elAnimation(scaleReverse);
-    }
-  }
+  &.scaleY::after { @include elAnimation(scaleY); }
+  &.scaleX::after { @include elAnimation(scaleX); }
+  &.scale::after { @include elAnimation(scale); }
+  &.scaleReverse::after { @include elAnimation(scaleReverse); }
 }
 .animation-text {
   font-size: 12px;
