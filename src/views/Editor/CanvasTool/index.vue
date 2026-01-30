@@ -306,7 +306,7 @@ const openImageLibPanel = () => {
 .divider {
   width: 1px;
   height: 20px;
-  background-color: $softShell;
+  background-color: #F1F5F9;
   margin: 0 20px;
 }
 
@@ -352,19 +352,14 @@ const openImageLibPanel = () => {
     }
 
     &:hover {
-      background-color: $softShell;
+      background-color: $skyPastel;
       color: $themeColor;
-      
-      &::before {
-        background-color: $skyPastel;
-        opacity: 0.6;
-      }
     }
 
     &.active {
-      background-color: $softShell;
+      background-color: $skyPastel;
       color: $themeColor;
-      box-shadow: 0 4px 12px rgba(116, 141, 174, 0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
 
     &.group-btn {
@@ -418,19 +413,13 @@ const openImageLibPanel = () => {
   }
 
   &:not(.disable):hover {
-    background-color: $softShell;
+    background-color: $skyPastel;
     color: $themeColor;
-    
-    &::before {
-      background-color: $skyPastel;
-      opacity: 0.6;
-    }
   }
   
   &.active {
     color: $themeColor;
-    background-color: $softShell;
-    box-shadow: 0 2px 8px rgba(116, 141, 174, 0.05);
+    background-color: $skyPastel;
   }
 }
 

@@ -321,7 +321,7 @@ textarea {
   animation-fill-mode: both;
 }
 
-// Dual Tone Icons
+// Simplified Icons (Removed Dual Tone)
 .icon,
 .handler-item,
 .menu-item .icon {
@@ -334,23 +334,13 @@ textarea {
   transition: all $transitionDelay;
 
   &::before {
-    content: '';
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    background-color: $dustyRose;
-    opacity: 0.4;
-    border-radius: 50%;
-    left: 20%;
-    top: 20%;
-    z-index: -1;
-    transition: all $transitionDelay;
+    display: none; // Disable blobs
   }
 }
 
-// Soft Tinted Shadow
+// Neutral High-Quality Shadow
 .soft-shadow {
-  box-shadow: 0 20px 50px rgba(116, 141, 174, 0.05); // Tinted with #748DAE
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 h1,
@@ -360,5 +350,6 @@ h3,
 .heading {
   font-family: $headingFont;
   letter-spacing: 0.05em;
-  color: $themeColor;
+  color: $charcoal;
+  font-weight: 700;
 }

@@ -223,12 +223,7 @@ const openAIPPTDialog = () => {
   }
 
   &:not(.disable):hover {
-    background-color: $softShell;
-    
-    &::before {
-      background-color: $skyPastel;
-      opacity: 0.6;
-    }
+    background-color: $skyPastel; // Slightly gray background on hover/tab
   }
 }
 
@@ -266,7 +261,7 @@ const openAIPPTDialog = () => {
     @include ellipsis-oneline();
 
     &:hover {
-      background-color: $softShell;
+      background-color: $skyPastel;
       color: $themeColor;
     }
   }
@@ -294,8 +289,8 @@ const openAIPPTDialog = () => {
   border-radius: $borderRadius;
   
   &:hover {
-    background-color: $softShell;
-    border-color: $skyPastel;
+    background-color: $skyPastel;
+    border-color: $themeColor;
     color: $themeColor;
   }
 
@@ -307,15 +302,15 @@ const openAIPPTDialog = () => {
 .present-group {
   display: flex;
   align-items: center;
-  background-color: $skyPastel; // Initial state Sky Pastel
+  background-color: $themeColor; 
   border-radius: $borderRadiusPill;
   transition: all $transitionDelay;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(116, 141, 174, 0.1);
+  box-shadow: 0 4px 12px rgba(116, 141, 174, 0.15); // Neutral blue shadow
 
   &:hover {
-    background-color: $themeColor; // Hover state Steel Blue
-    box-shadow: 0 10px 30px rgba(116, 141, 174, 0.2);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 20px rgba(116, 141, 174, 0.2);
     transform: translateY(-1px);
   }
 

@@ -1,19 +1,19 @@
-$themeColor: #748DAE; // Steel Blue (Primary & Stroke)
+$themeColor: #748DAE; // Steel Blue (Primary & Accent)
 $themeHoverColor: #5B7494;
-$skyPastel: #9ECAD6; // Secondary/Hover
-$dustyRose: #F5CBCB; // Accent/Dot
-$softShell: #FFEAEA; // Background/Border/Indicator
-$charcoal: #333333; // Body Text
-$textColor: #333333;
-$textColorSecondary: #828282;
-$borderColor: #FFEAEA; // Super thin border color
-$lightGray: #FFFFFF; // Canvas background
+$skyPastel: #F2F2F7; // Active Tab Gray
+$dustyRose: transparent; // Removed pink
+$softShell: #E5E7EB; // Border / Neutral Gray
+$charcoal: #2C3E50; // Sharp Deep Blue-Gray for text (not black)
+$textColor: #2C3E50;
+$textColorSecondary: #94A3B8;
+$borderColor: #F1F5F9;
+$lightGray: #FFFFFF; // Pure white canvas
 $sidebarBg: #FFFFFF;
 $headerBg: #FFFFFF;
 $surfaceBg: #FFFFFF;
-$accentColor: #F5CBCB;
-$accentTeal: #9ECAD6;
-$shareBtnBg: #F9FAFB;
+$accentColor: #748DAE;
+$accentTeal: #748DAE;
+$shareBtnBg: #FFFFFF;
 
 $slideGradient: linear-gradient(135deg, #748DAE 0%, #9ECAD6 100%);
 

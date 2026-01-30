@@ -409,26 +409,18 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     align-items: center;
     cursor: pointer;
     transition: all $transitionDelay;
-    box-shadow: 0 10px 25px rgba(116, 141, 174, 0.2);
+    box-shadow: 0 4px 12px rgba(116, 141, 174, 0.15);
     position: relative;
     z-index: 1;
 
     &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: $dustyRose;
-      border-radius: 50%;
-      z-index: -1;
-      transform: scale(0.8) translate(4px, 4px);
-      opacity: 0.6;
+      display: none; // Remove pink blob
     }
 
     &:hover {
-      transform: translateY(-2px) scale(1.05);
-      background-color: $skyPastel;
-      box-shadow: 0 15px 35px rgba(116, 141, 174, 0.3);
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+      box-shadow: 0 8px 20px rgba(116, 141, 174, 0.25);
     }
 
     .icon {
@@ -457,7 +449,7 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   margin: 20px;
   background-color: #FFFFFF;
   color: $themeColor;
-  border: 1px solid $softShell;
+  border: 1px solid #F1F5F9;
   border-radius: $borderRadiusPill;
   display: flex;
   justify-content: center;
@@ -467,11 +459,10 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   font-weight: 600;
   cursor: pointer;
   transition: all $transitionDelay;
-  box-shadow: 0 5px 15px rgba(116, 141, 174, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 
   &:hover {
-    background-color: $softShell;
-    border-color: $skyPastel;
+    background-color: $skyPastel;
     transform: translateY(-1px);
   }
 
@@ -506,25 +497,26 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   }
 
   &.active {
+    background-color: $skyPastel; // Slightly gray active tab
     .label {
-      color: $dustyRose; // Current indicator color
+      color: $themeColor; 
       font-weight: 800;
     }
     .thumbnail {
-      outline: 2px solid $dustyRose;
-      box-shadow: 0 15px 45px rgba(116, 141, 174, 0.1);
+      outline: 2px solid $themeColor;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
   }
   &.selected {
     .thumbnail {
-      outline: 2px solid $skyPastel;
+      outline: 2px solid $themeColor;
     }
   }
 
   .label {
     font-size: 11px;
     font-family: $headingFont;
-    color: $softShell; // Unviewed indicator color
+    color: $textColorSecondary; // Neutral gray instead of pinkish
     width: 28px;
     text-align: right;
     margin-right: 16px;
