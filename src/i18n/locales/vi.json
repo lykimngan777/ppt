@@ -21,6 +21,7 @@
     },
     "thumbnails": {
         "addSlide": "Thêm trang",
+        "selectTheme": "Chọn theme",
         "inputSectionName": "Nhập tên phân đoạn",
         "untitledSection": "Phân đoạn không tiêu đề",
         "defaultSection": "Phân đoạn mặc định",

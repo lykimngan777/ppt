@@ -6,7 +6,7 @@
     v-contextmenu="contextmenusThumbnails"
   >
     <div class="add-slide">
-      <div class="btn" @click="createSlide()"><IconPlus class="icon" />{{ $t('thumbnails.addSlide') }}</div>
+      <div class="btn" @click="presetLayoutPopoverVisible = !presetLayoutPopoverVisible"><IconTheme class="icon" />{{ $t('thumbnails.selectTheme') }}</div>
       <Popover trigger="click" placement="bottom-start" v-model:value="presetLayoutPopoverVisible" center>
         <template #content>
           <Templates 

@@ -21,6 +21,7 @@
     },
     "thumbnails": {
         "addSlide": "添加幻灯片",
+        "selectTheme": "选择主题",
         "inputSectionName": "输入节名称",
         "untitledSection": "无标题节",
         "defaultSection": "默认节",
