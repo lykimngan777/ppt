@@ -177,14 +177,14 @@ const openAIPPTDialog = () => {
 
 <style lang="scss" scoped>
 .editor-header {
-  height: 64px; // Taller for 'Airy'
+  height: 64px;
   background-color: $headerBg;
   user-select: none;
-  border-bottom: 1px solid $softShell;
+  border-bottom: 1px solid $borderColor;
   display: flex;
   justify-content: space-between;
   padding: 0 32px;
-  color: $charcoal;
+  color: $textColor;
   font-family: $uiFont;
 }
 .left, .right {
@@ -223,7 +223,8 @@ const openAIPPTDialog = () => {
   }
 
   &:not(.disable):hover {
-    background-color: $skyPastel; // Slightly gray background on hover/tab
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $themeColor;
   }
 }
 
@@ -237,14 +238,14 @@ const openAIPPTDialog = () => {
     height: 100%;
     
     ::v-deep(input) {
-      background-color: #F3F4F6;
+      background-color: rgba(255, 255, 255, 0.03);
       border: 1px solid transparent;
       color: $textColor;
       font-family: $uiFont;
       transition: all $transitionDelay;
 
       &:focus {
-        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.08);
         border-color: $themeColor;
       }
     }
@@ -261,7 +262,7 @@ const openAIPPTDialog = () => {
     @include ellipsis-oneline();
 
     &:hover {
-      background-color: $skyPastel;
+      background-color: rgba(255, 255, 255, 0.05);
       color: $themeColor;
     }
   }
@@ -289,8 +290,8 @@ const openAIPPTDialog = () => {
   border-radius: $borderRadius;
   
   &:hover {
-    background-color: $skyPastel;
-    border-color: $themeColor;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: $accentSecondary;
     color: $themeColor;
   }
 
@@ -306,11 +307,12 @@ const openAIPPTDialog = () => {
   border-radius: $borderRadiusPill;
   transition: all $transitionDelay;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(116, 141, 174, 0.15); // Neutral blue shadow
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
 
   &:hover {
     filter: brightness(1.1);
-    box-shadow: 0 8px 20px rgba(116, 141, 174, 0.2);
+    background-color: $themeHoverColor;
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
     transform: translateY(-1px);
   }
 
@@ -321,7 +323,7 @@ const openAIPPTDialog = () => {
     padding: 0 20px;
     cursor: pointer;
     font-weight: 700;
-    color: #fff;
+    color: #0A1428; // Contrast color for cyan
 
     .icon {
       font-size: 18px;

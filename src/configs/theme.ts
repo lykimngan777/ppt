@@ -12,6 +12,13 @@ export interface PresetTheme {
 
 export const PRESET_THEMES: PresetTheme[] = [
   {
+    background: '#0A1428',
+    fontColor: '#E2E8F0',
+    borderColor: '#1E293B',
+    fontname: 'Montserrat',
+    colors: ['#00D4FF', '#7C3AED', '#00B4D8', '#1E293B', '#94A3B8', '#E2E8F0'],
+  },
+  {
     background: '#0288D1',
     fontColor: '#ffffff',
     borderColor: '#ffffff',

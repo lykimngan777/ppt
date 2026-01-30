@@ -293,10 +293,12 @@ const openImageLibPanel = () => {
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
-  height: 60px; // Taller for 'Airy'
+  height: 60px;
   user-select: none;
-  color: $charcoal;
+  color: $textColor;
   align-items: center;
+  background-color: $headerBg;
+  border-bottom: 1px solid $borderColor;
 }
 .left-handler, .more, .right-handler, .add-element-handler {
   display: flex;
@@ -306,7 +308,7 @@ const openImageLibPanel = () => {
 .divider {
   width: 1px;
   height: 20px;
-  background-color: #F1F5F9;
+  background-color: $borderColor;
   margin: 0 20px;
 }
 
@@ -352,14 +354,14 @@ const openImageLibPanel = () => {
     }
 
     &:hover {
-      background-color: $skyPastel;
+      background-color: rgba(255, 255, 255, 0.05);
       color: $themeColor;
     }
 
     &.active {
-      background-color: $skyPastel;
+      background-color: rgba(124, 58, 237, 0.15); // Violet active
       color: $themeColor;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
     }
 
     &.group-btn {
@@ -413,13 +415,13 @@ const openImageLibPanel = () => {
   }
 
   &:not(.disable):hover {
-    background-color: $skyPastel;
+    background-color: rgba(255, 255, 255, 0.05);
     color: $themeColor;
   }
   
   &.active {
     color: $themeColor;
-    background-color: $skyPastel;
+    background-color: rgba(124, 58, 237, 0.1);
   }
 }
 

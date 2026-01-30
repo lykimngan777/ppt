@@ -402,14 +402,14 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     width: 36px;
     height: 36px;
     background-color: $themeColor;
-    color: #fff;
+    color: #0A1428;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: all $transitionDelay;
-    box-shadow: 0 4px 12px rgba(116, 141, 174, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
     position: relative;
     z-index: 1;
 
@@ -420,7 +420,7 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     &:hover {
       transform: translateY(-2px);
       filter: brightness(1.1);
-      box-shadow: 0 8px 20px rgba(116, 141, 174, 0.25);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.6);
     }
 
     .icon {
@@ -447,9 +447,9 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
 .add-slide-fixed {
   height: 44px;
   margin: 20px;
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.05);
   color: $themeColor;
-  border: 1px solid #F1F5F9;
+  border: 1px solid $borderColor;
   border-radius: $borderRadiusPill;
   display: flex;
   justify-content: center;
@@ -459,10 +459,9 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   font-weight: 600;
   cursor: pointer;
   transition: all $transitionDelay;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 
   &:hover {
-    background-color: $skyPastel;
+    background-color: rgba(255, 255, 255, 0.08);
     transform: translateY(-1px);
   }
 
@@ -497,14 +496,14 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   }
 
   &.active {
-    background-color: $skyPastel; // Slightly gray active tab
+    background-color: rgba(0, 212, 255, 0.05); // Subtle cyan glow
     .label {
       color: $themeColor; 
       font-weight: 800;
     }
     .thumbnail {
       outline: 2px solid $themeColor;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
     }
   }
   &.selected {
@@ -516,7 +515,7 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   .label {
     font-size: 11px;
     font-family: $headingFont;
-    color: $textColorSecondary; // Neutral gray instead of pinkish
+    color: $textColorSecondary;
     width: 28px;
     text-align: right;
     margin-right: 16px;

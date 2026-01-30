@@ -207,11 +207,11 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #E2E8F0;
+  background-color: #1E293B;
   border-radius: 10px;
 
   &:hover {
-    background-color: #CBD5E1;
+    background-color: #334155;
   }
 }
 
@@ -321,7 +321,7 @@ textarea {
   animation-fill-mode: both;
 }
 
-// Simplified Icons (Removed Dual Tone)
+// Simplified Icons (Clean Dark Theme)
 .icon,
 .handler-item,
 .menu-item .icon {
@@ -334,7 +334,7 @@ textarea {
   transition: all $transitionDelay;
 
   &::before {
-    display: none; // Disable blobs
+    display: none; // Disable blobs as requested
   }
 }
 
