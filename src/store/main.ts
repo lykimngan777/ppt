@@ -40,6 +40,7 @@ export interface MainState {
   showImageLibPanel: boolean
   showAIPPTDialog: boolean | 'running'
   previewTransition: string
+  sidebarState: string
 }
 
 const nanoid = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
@@ -79,6 +80,7 @@ export const useMainStore = defineStore('main', {
     showImageLibPanel: false, // 打开图片库面板
     showAIPPTDialog: false, // 打开AIPPT创建窗口
     previewTransition: '', // 预览幻灯片切换效果
+    sidebarState: 'design', // 左侧侧边栏状态
   }),
 
   getters: {
@@ -223,6 +225,10 @@ export const useMainStore = defineStore('main', {
 
     setPreviewTransition(transition: string) {
       this.previewTransition = transition
+    },
+
+    setSidebarState(state: string) {
+      this.sidebarState = state
     },
   },
 })

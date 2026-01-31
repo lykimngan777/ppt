@@ -1,13 +1,17 @@
 <template>
   <div class="editor-header">
     <div class="left">
+      <div class="header-item home-btn" @click="goLink('/')">
+        <IconHome class="icon" /> <span>Home</span>
+      </div>
+
       <Popover trigger="click" placement="bottom-start" v-model:value="mainMenuVisible">
         <template #content>
           <div class="main-menu">
             <div class="ai-menu" @click="openAIPPTDialog(); mainMenuVisible = false">
               <div class="icon"><IconClick theme="two-tone" :fill="['#ffc158', '#fff']" /></div>
               <div class="aippt-content">
-                <div class="aippt"><span>AIPPT</span></div>
+                <div class="aippt"><span>Magic Studio</span></div>
                 <div class="aippt-subtitle">{{ $t('header.aipptSubtitle') }}</div>
               </div>
             </div>
@@ -22,15 +26,6 @@
               }">
                 <span class="icon"><IconFilePdf theme="multi-color" :fill="['#333', '#d14424', '#fff']" /></span>
                 <span class="label">PPTX</span>
-                <span class="sub-label">（{{ $t('header.forTestOnly') }}）</span>
-              </FileInput>
-              <FileInput class="import-block" accept=".json" @change="files => {
-                importJSON(files)
-                mainMenuVisible = false
-              }">
-                <span class="icon"><IconFileJpg theme="multi-color" :fill="['#333', '#d14424', '#fff']" /></span>
-                <span class="label">JSON</span>
-                <span class="sub-label">（{{ $t('header.forTestOnly') }}）</span>
               </FileInput>
               <FileInput class="import-block" accept=".pptist" @change="files => {
                 importSpecificFile(files)
@@ -38,7 +33,6 @@
               }">
                 <span class="icon"><IconNotes theme="multi-color" :fill="['#333', '#d14424', '#fff']" /></span>
                 <span class="label">PPTIST</span>
-                <span class="sub-label">（{{ $t('header.proprietaryFormat') }}）</span>
               </FileInput>
             </div>
           </div>
@@ -47,16 +41,26 @@
           <Divider :margin="10" />
           <PopoverMenuItem class="popover-menu-item" @click="resetSlides(); mainMenuVisible = false"><IconRefresh class="icon" /> {{ $t('header.resetSlides') }}</PopoverMenuItem>
           <PopoverMenuItem class="popover-menu-item" @click="openMarkupPanel(); mainMenuVisible = false"><IconMark class="icon" /> {{ $t('header.slideLabel') }}</PopoverMenuItem>
-          <PopoverMenuItem class="popover-menu-item" @click="mainMenuVisible = false; hotkeyDrawerVisible = true"><IconCommand class="icon" /> {{ $t('header.hotkeys') }}</PopoverMenuItem>
-
-          <Divider :margin="10" />
-          <div class="statement">{{ $t('header.statement') }}</div>
         </template>
-        <div class="menu-item"><IconHamburgerButton class="icon" /></div>
+        <div class="header-item"><span>File</span></div>
       </Popover>
 
+      <div class="header-item">
+        <IconDiamond class="icon" style="color: #ffc158;" /> <span>Resize</span>
+      </div>
 
+      <div class="header-actions">
+        <IconBack class="action-icon" :class="{ 'disable': !canUndo }" @click="undo()" />
+        <IconNext class="action-icon" :class="{ 'disable': !canRedo }" @click="redo()" />
+      </div>
+      
+      <div class="save-status">
+        <IconCloudCheck v-if="true" />
+        <span>All changes saved</span>
+      </div>
+    </div>
 
+    <div class="center">
       <div class="title">
         <Input 
           class="title-input" 
@@ -75,27 +79,17 @@
     </div>
 
     <div class="right">
-      <div class="save-indicator">
-        <IconCloud /> <span>Đã lưu</span>
-      </div>
-      
-      <div class="menu-item share-btn">
-        <IconShare /> <span>Share</span>
+      <div class="header-item" @click="enterScreening()">
+        <IconPlayOne class="icon" /> <span>Present</span>
       </div>
 
-      <div class="present-group">
-        <div class="present-btn" @click="enterScreening()">
-          <IconPlay class="icon" /> <span>Present</span>
-        </div>
-        <Popover trigger="click" center>
-          <template #content>
-            <PopoverMenuItem class="popover-menu-item" @click="enterScreeningFromStart()"><IconSlideTwo class="icon" /> {{ $t('header.startFromStart') }}</PopoverMenuItem>
-            <PopoverMenuItem class="popover-menu-item" @click="enterScreening()"><IconPpt class="icon" /> {{ $t('header.startFromCurrent') }}</PopoverMenuItem>
-          </template>
-          <div class="arrow-btn"><IconDown class="arrow" /></div>
-        </Popover>
+      <div class="share-btn-modern">
+        <span>Share</span>
       </div>
 
+      <div class="user-avatar">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar" />
+      </div>
     </div>
 
     <Drawer
@@ -177,177 +171,215 @@ const openAIPPTDialog = () => {
 
 <style lang="scss" scoped>
 .editor-header {
-  height: 64px;
-  background-color: $headerBg;
-  user-select: none;
-  border-bottom: 1px solid $borderColor;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 32px;
-  color: $textColor;
-  font-family: $uiFont;
-}
-.left, .right {
+  height: 56px;
+  background: $headerBg;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #FFFFFF;
+  font-family: $uiFont;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.left, .right, .center {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .left {
-  gap: 24px;
+  gap: 8px;
 }
 
-.menu-item {
-  height: 32px;
+.header-item {
+  height: 36px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 14px;
-  padding: 0 8px;
+  padding: 0 12px;
   border-radius: $borderRadius;
   cursor: pointer;
-  transition: all $transitionDelay;
-  color: $textColor;
+  transition: background-color $transitionDelayFast;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 6px;
 
-  &.icon-only {
-    width: 32px;
-    padding: 0;
-  }
-
-  &.disable {
-    opacity: .3;
-    cursor: default;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
   }
 
   .icon {
-    font-size: 20px;
-  }
-
-  &:not(.disable):hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: $themeColor;
+    font-size: 18px;
   }
 }
 
-.title {
-  height: 36px;
-  font-size: 16px;
-  font-weight: 600;
+.header-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 
+  .action-icon {
+    font-size: 18px;
+    padding: 6px;
+    border-radius: $borderRadius;
+    cursor: pointer;
+    transition: all $transitionDelayFast;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &.disable {
+      opacity: 0.3;
+      cursor: default;
+      &:hover { background: none; }
+    }
+  }
+}
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.center {
+  flex: 1;
+  justify-content: center;
+}
+
+.title {
+  max-width: 400px;
+  
   .title-input {
     width: 240px;
-    height: 100%;
-    
     ::v-deep(input) {
-      background-color: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #FFFFFF; // Pure white for editing
-      font-family: $uiFont;
-      transition: all $transitionDelay;
-
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      text-align: center;
       &:focus {
-        background-color: rgba(255, 255, 255, 0.08);
-        border-color: $themeColor;
+        background-color: rgba(255, 255, 255, 0.2);
       }
     }
   }
+
   .title-text {
-    min-width: 20px;
-    max-width: 400px;
-    line-height: 36px;
-    padding: 0 12px;
+    padding: 4px 12px;
     border-radius: $borderRadius;
     cursor: pointer;
-    font-family: $headingFont;
-    color: #FFFFFF; // Force white as requested
-
-    @include ellipsis-oneline();
+    font-weight: 600;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.2);
     }
   }
 }
 
 .right {
-  gap: 24px; // Increased for 'Airy' feel
+  gap: 12px;
 }
 
-.save-indicator {
+.share-btn-modern {
+  background-color: #FFFFFF;
+  color: $themeColor;
+  padding: 0 20px;
+  height: 36px;
   display: flex;
   align-items: center;
-  font-size: 12px;
-  color: $textColorSecondary;
-  gap: 6px;
-  margin-right: 8px;
+  border-radius: $borderRadius;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform $transitionDelayFast;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color: #F8F9FA;
+  }
 }
 
-.share-btn {
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: transparent;
-  padding: 0 16px;
-  font-weight: 500;
-  border-radius: $borderRadius;
-  
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  margin-left: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.popover-menu-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color .2s;
+
   &:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: $accentSecondary;
+    background-color: #F8F9FA;
     color: $themeColor;
   }
+}
 
-  span {
-    margin-left: 8px;
+.import-section {
+  padding: 10px 16px;
+  .import-label {
+    font-size: 12px;
+    color: $textColorSecondary;
+    margin-bottom: 8px;
+  }
+  .import-grid {
+    display: flex;
+    gap: 12px;
+  }
+  .import-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    .icon { font-size: 24px; }
+    .label { font-size: 11px; }
   }
 }
 
-.present-group {
+.ai-menu {
   display: flex;
-  align-items: center;
-  background-color: $themeColor; 
-  border-radius: $borderRadiusPill;
-  transition: all $transitionDelay;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+  padding: 12px 16px;
+  gap: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba($themeColor, 0.05), rgba($accentSecondary, 0.05));
+  border-radius: $borderRadius;
+  margin: 4px;
 
   &:hover {
-    filter: brightness(1.1);
-    background-color: $themeHoverColor;
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba($themeColor, 0.1), rgba($accentSecondary, 0.1));
   }
 
-  .present-btn {
-    height: 36px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    cursor: pointer;
-    font-weight: 700;
-    color: #0A1428; // Contrast color for cyan
+  .icon { font-size: 24px; }
+  .aippt { font-weight: 800; color: $themeColor; }
+  .aippt-subtitle { font-size: 12px; color: $textColorSecondary; }
+}
 
-    .icon {
-      font-size: 18px;
-      margin-right: 8px;
-    }
-  }
-
-  .arrow-btn {
-    height: 36px;
-    width: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    color: #fff;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .arrow {
-      font-size: 10px;
-    }
-  }
+.statement {
+  padding: 8px 16px;
+  font-size: 11px;
+  color: $textColorSecondary;
+  font-style: italic;
 }
 </style>

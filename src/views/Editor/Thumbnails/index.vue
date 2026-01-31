@@ -1,6 +1,7 @@
 <template>
   <div 
     class="thumbnails"
+    :class="{ 'horizontal': !vertical }"
     @mousedown="() => setThumbnailsFocus(true)"
     v-click-outside="() => setThumbnailsFocus(false)"
     v-contextmenu="contextmenusThumbnails"
@@ -85,6 +86,13 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch, useTemplateRef } from 'vue'
+
+interface Props {
+  vertical?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  vertical: true,
+})
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { useMainStore, useSlidesStore, useKeyboardStore } from '@/store'
@@ -383,12 +391,35 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
 
 <style lang="scss" scoped>
 .thumbnails {
-  border-right: solid 1px $borderColor;
-  background-color: $sidebarBg;
+  height: 100%;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   user-select: none;
   position: relative;
+
+  &.horizontal {
+    flex-direction: row;
+    align-items: center;
+    border-right: 0;
+
+    .thumbnail-list {
+      display: flex;
+      flex-direction: row;
+      padding: 0 10px;
+    }
+
+    .thumbnail-item {
+      padding: 0 8px;
+      flex-direction: column;
+      .label { margin: 0 0 4px 0; width: auto; text-align: center; }
+    }
+
+    .add-slide-fixed {
+      margin: 0 16px;
+      width: 100px;
+    }
+  }
 }
 .add-slide {
   height: 64px;

@@ -111,7 +111,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: $surfaceBg;
+  background-color: $lightGray;
   color: $textColor;
 }
 
@@ -119,7 +119,7 @@ body {
   font-family: $uiFont;
   line-height: $lineHeight;
   letter-spacing: $letterSpacing;
-  color: $charcoal;
+  color: $textColor;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -207,11 +207,11 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1E293B;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 
   &:hover {
-    background-color: #334155;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -347,6 +347,6 @@ h3,
 .heading {
   font-family: $headingFont;
   letter-spacing: 0.05em;
-  color: #FFFFFF; // Always white for dark theme titles
+  color: inherit; // Use parent color
   font-weight: 700;
 }

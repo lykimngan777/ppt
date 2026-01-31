@@ -2,15 +2,28 @@
   <div class="pptist-editor">
     <EditorHeader class="layout-header" />
     <div class="layout-content">
-      <Thumbnails class="layout-content-left" />
+      <SideBar class="layout-side-bar" />
+      
+      <div class="layout-side-panel" v-if="sidebarState">
+        <SidePanel />
+      </div>
+
       <div class="layout-content-center">
         <CanvasTool class="center-top" />
-        <Canvas class="center-body" :style="{ height: `calc(100% - ${remarkHeight + 40}px)` }" />
-        <Remark
-          class="center-bottom" 
-          v-model:height="remarkHeight" 
-          :style="{ height: `${remarkHeight}px` }"
-        />
+        <div class="canvas-wrapper">
+          <Canvas class="center-body" />
+        </div>
+        <div class="bottom-bar">
+          <div class="pages-strip">
+            <Thumbnails :vertical="false" />
+          </div>
+          <div class="bottom-tools">
+            <div class="notes-btn"><IconNotes /> Notes</div>
+            <div class="zoom-controls">
+              <!-- Reuse CanvasTool zoom part if needed -->
+            </div>
+          </div>
+        </div>
       </div>
       <Toolbar class="layout-content-right" />
     </div>
@@ -52,6 +65,8 @@ import useGlobalHotkey from '@/hooks/useGlobalHotkey'
 import usePasteEvent from '@/hooks/usePasteEvent'
 
 import EditorHeader from './EditorHeader/index.vue'
+import SideBar from './SideBar.vue'
+import SidePanel from './SidePanel.vue'
 import Canvas from './Canvas/index.vue'
 import CanvasTool from './CanvasTool/index.vue'
 import Thumbnails from './Thumbnails/index.vue'
@@ -77,6 +92,7 @@ const {
   showMarkupPanel,
   showImageLibPanel,
   showAIPPTDialog,
+  sidebarState,
 } = storeToRefs(mainStore)
 
 const closeExportDialog = () => mainStore.setDialogForExport('')
@@ -99,20 +115,77 @@ usePasteEvent()
   height: calc(100% - 56px);
   display: flex;
 }
-.layout-content-left {
-  width: 200px;
-  height: 100%;
+.layout-side-bar {
   flex-shrink: 0;
 }
+.layout-side-panel {
+  width: 320px;
+  height: 100%;
+  background-color: #FFFFFF;
+  border-right: 1px solid $borderColor;
+  flex-shrink: 0;
+  z-index: 5;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.05);
+
+  .panel-content {
+    padding: 24px;
+    h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: $textColor;
+    }
+  }
+}
 .layout-content-center {
-  width: calc(100% - 200px - 280px);
+  flex: 1;
+  background-color: $lightGray;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   .center-top {
     height: 48px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid $borderColor;
+  }
+  
+  .canvas-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+}
+.bottom-bar {
+  height: 120px;
+  background-color: #FFFFFF;
+  border-top: 1px solid $borderColor;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  .pages-strip {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px;
+  }
+
+  .bottom-tools {
+    height: 32px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $borderColor;
+    background-color: $lightGray;
+    font-size: 11px;
+    color: $textColorSecondary;
   }
 }
 .layout-content-right {
   width: 280px;
   height: 100%;
+  background-color: #FFFFFF;
+  border-left: 1px solid $borderColor;
 }
 </style>
