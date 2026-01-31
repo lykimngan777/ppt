@@ -14,9 +14,6 @@
           <Canvas class="center-body" />
         </div>
         <div class="bottom-bar">
-          <div class="pages-strip">
-            <Thumbnails :vertical="false" />
-          </div>
           <div class="bottom-tools">
             <div class="notes-btn"><IconNotes /> Notes</div>
             <div class="status-info">
@@ -163,7 +160,7 @@ usePasteEvent()
   }
 }
 .bottom-bar {
-  height: 120px;
+  height: 32px;
   background-color: #FFFFFF;
   border-top: 1px solid $borderColor;
   display: flex;
