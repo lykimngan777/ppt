@@ -81,7 +81,7 @@ defineExpose({
 
 <style lang="scss" scoped>
 .input {
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   border: 1px solid $borderColor;
   padding: 0 8px;
   border-radius: $borderRadius;
@@ -105,22 +105,22 @@ defineExpose({
     font-family: inherit;
 
     &::placeholder {
-      color: #666;
+      color: #999;
     }
   }
 
   &:not(.disabled):hover, &.focused {
     border-color: $accentColor;
-    background-color: #3D3D3D;
+    background-color: #FFFFFF;
   }
 
   &.disabled {
-    background-color: #1A1A1A;
-    border-color: #333;
-    color: #555;
+    background-color: rgba($charcoal, 0.5);
+    border-color: $borderColor;
+    color: #999;
 
     input {
-      color: #555;
+      color: #999;
     }
   }
 

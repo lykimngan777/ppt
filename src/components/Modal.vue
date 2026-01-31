@@ -124,8 +124,8 @@ const onClickMask = () => {
   border-radius: $borderRadius;
 
   &:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: $charcoal;
+    color: $textColor;
   }
 }
 

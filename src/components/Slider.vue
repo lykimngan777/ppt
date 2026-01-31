@@ -196,7 +196,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
 
   .bar {
     &:hover {
-      background-color: #333;
+      background-color: darken($charcoal, 3%);
     }
   }
 
@@ -219,7 +219,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
   height: 4px;
   border-radius: 2px;
   position: relative;
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   user-select: none;
   transition: background-color .2s;
 }

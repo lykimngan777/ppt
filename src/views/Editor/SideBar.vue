@@ -46,11 +46,12 @@ const setTab = (value: string) => {
 .side-bar {
   width: 72px;
   height: 100%;
-  background-color: #121212;
+  background-color: #F8F9FA;
   display: flex;
   flex-direction: column;
   padding-top: 8px;
   z-index: 10;
+  border-right: 1px solid $borderColor;
 }
 
 .tab-item {
@@ -60,18 +61,19 @@ const setTab = (value: string) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #8E8E8E;
+  color: #6D7278;
   cursor: pointer;
   transition: all 0.2s;
   gap: 4px;
 
   &:hover {
-    color: #FFFFFF;
+    color: $textColor;
+    background-color: rgba(0,0,0,0.02);
   }
 
   &.active {
-    color: #FFFFFF;
-    background-color: #252525;
+    color: $themeColor;
+    background-color: #FFFFFF;
   }
 
   .icon {

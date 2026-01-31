@@ -144,7 +144,7 @@ const handleSelect = (option: SelectOption) => {
   transition: all $transitionDelay;
   font-size: 13px;
   user-select: none;
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   border: 1px solid $borderColor;
   color: $textColor;
   position: relative;
@@ -152,13 +152,13 @@ const handleSelect = (option: SelectOption) => {
 
   &:not(.disabled):hover {
     border-color: $accentColor;
-    background-color: #3D3D3D;
+    background-color: darken($charcoal, 2%);
   }
 
   &.disabled {
-    background-color: #1A1A1A;
-    border-color: #333;
-    color: #555;
+    background-color: rgba($charcoal, 0.5);
+    border-color: $borderColor;
+    color: #999;
     cursor: default;
   }
 

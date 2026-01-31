@@ -37,8 +37,8 @@ const handleChange = () => {
 
   &:not(.disabled).active {
     .switch-core {
-      border-color: #0288D1;
-      background-color: #0288D1;
+      border-color: $themeColor;
+      background-color: $themeColor;
 
       &::after {
         left: 100%;
@@ -52,7 +52,7 @@ const handleChange = () => {
     opacity: 0.6;
 
     .switch-core::after {
-      background-color: #666;
+      background-color: #eee;
     }
   }
 }
@@ -62,11 +62,11 @@ const handleChange = () => {
   position: relative;
   width: 40px;
   height: 20px;
-  border: 1px solid #444;
+  border: 1px solid $borderColor;
   outline: none;
   border-radius: 10px;
   box-sizing: border-box;
-  background: #333;
+  background: $charcoal;
   transition: all $transitionDelay;
   vertical-align: middle;
 

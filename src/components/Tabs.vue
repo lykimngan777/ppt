@@ -96,7 +96,7 @@ const emit = defineEmits<{
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #1a1a1a;
+      background-color: $charcoal;
       border-bottom: 2px solid $borderColor;
       cursor: pointer;
       color: $textColorSecondary;
@@ -105,7 +105,7 @@ const emit = defineEmits<{
       &.active {
         background-color: $sidebarBg;
         border-bottom-color: $accentColor;
-        color: #fff;
+        color: $textColor;
         font-weight: 600;
       }
 
@@ -114,7 +114,7 @@ const emit = defineEmits<{
       }
 
       &:hover:not(.active) {
-        background-color: #2D2D2D;
+        background-color: rgba($charcoal, 0.8);
       }
     }
   }

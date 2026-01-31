@@ -112,7 +112,7 @@ const handleFocus = (e: Event) => {
 
 <style lang="scss" scoped>
 .number-input {
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   border: 1px solid $borderColor;
   padding: 0 0 0 8px;
   border-radius: $borderRadius;
@@ -143,7 +143,7 @@ const handleFocus = (e: Event) => {
     opacity: 0;
     user-select: none;
     transition: opacity .25s;
-    background-color: #333;
+    background-color: darken($charcoal, 5%);
     border-top-right-radius: $borderRadius;
     border-bottom-right-radius: $borderRadius;
 
@@ -161,8 +161,8 @@ const handleFocus = (e: Event) => {
       }
 
       &:hover {
-        color: #0288D1;
-        background-color: #444;
+        color: $themeColor;
+        background-color: darken($charcoal, 10%);
       }
     }
   }
@@ -179,22 +179,22 @@ const handleFocus = (e: Event) => {
     font-family: inherit;
 
     &::placeholder {
-      color: #666;
+      color: #999;
     }
   }
 
   &:not(.disabled):hover, &.focused {
     border-color: $accentColor;
-    background-color: #3D3D3D;
+    background-color: #FFFFFF;
   }
 
   &.disabled {
-    background-color: #1A1A1A;
-    border-color: #333;
-    color: #555;
+    background-color: rgba($charcoal, 0.5);
+    border-color: $borderColor;
+    color: #999;
 
     input {
-      color: #555;
+      color: #999;
     }
 
     .handlers {

@@ -398,7 +398,7 @@ const execAI = async (command: string) => {
     height: 16px;
     display: inline-block;
     margin-top: 8px;
-    border: 1px solid #0288D1;
+    border: 1px solid $themeColor;
     border-top-color: transparent;
     border-radius: 50%;
     animation: spinner .8s linear infinite;
@@ -432,7 +432,7 @@ const execAI = async (command: string) => {
   background-color: $sidebarBg;
 }
 .list {
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   padding: 4px 4px 4px 20px;
   cursor: pointer;
   transition: all $transitionDelay;
@@ -448,11 +448,11 @@ const execAI = async (command: string) => {
   }
 
   &:hover {
-    color: #0288D1;
-    background-color: #3D3D3D;
+    color: $themeColor;
+    background-color: darken($charcoal, 3%);
 
     span {
-      background-color: #0288D1;
+      background-color: $themeColor;
     }
   }
 }

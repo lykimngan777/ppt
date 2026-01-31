@@ -588,7 +588,7 @@ const fonts = computed(() => {
     justify-content: center;
     align-items: center;
     display: flex;
-    background-color: rgba($color: #000, $alpha: .6);
+    background-color: rgba($color: #000, $alpha: .2);
     opacity: 0;
     transition: opacity $transitionDelay;
     border-radius: $borderRadius;
@@ -603,13 +603,13 @@ const fonts = computed(() => {
   color: $textColor;
 
   &:not(.selected):hover {
-    background-color: #2D2D2D;
+    background-color: $charcoal;
     cursor: pointer;
-    color: #fff;
+    color: $textColor;
   }
 
   &.selected {
-    color: #0288D1;
+    color: $themeColor;
     font-weight: 700;
   }
 }

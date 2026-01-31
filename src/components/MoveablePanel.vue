@@ -269,7 +269,7 @@ const startResize = (e: MouseEvent) => {
   border-bottom: 1px solid $borderColor;
   user-select: none;
   cursor: move;
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   border-top-left-radius: $borderRadius;
   border-top-right-radius: $borderRadius;
 }
@@ -291,8 +291,8 @@ const startResize = (e: MouseEvent) => {
   transition: all $transitionDelay;
 
   &:hover {
-    color: #fff;
-    background-color: #3D3D3D;
+    color: $textColor;
+    background-color: darken($charcoal, 5%);
   }
 }
 .content {

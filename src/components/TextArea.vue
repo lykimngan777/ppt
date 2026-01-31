@@ -62,7 +62,7 @@ defineExpose({
 .textarea {
   outline: 0;
   width: 100%;
-  background-color: #2D2D2D;
+  background-color: $charcoal;
   border: 1px solid $borderColor;
   border-radius: $borderRadius;
   padding: 10px;
@@ -75,7 +75,7 @@ defineExpose({
 
   &:focus {
     border-color: $accentColor;
-    background-color: #3D3D3D;
+    background-color: #FFFFFF;
   }
 
   &.resizable {
@@ -83,13 +83,13 @@ defineExpose({
   }
 
   &.disabled {
-    background-color: #1A1A1A;
-    border-color: #333;
-    color: #555;
+    background-color: rgba($charcoal, 0.5);
+    border-color: $borderColor;
+    color: #999;
   }
 
   &::placeholder {
-    color: #666;
+    color: #999;
   }
 }
 </style>
