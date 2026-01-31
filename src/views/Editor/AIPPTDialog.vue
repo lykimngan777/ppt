@@ -355,7 +355,7 @@ const uploadLocalTemplate = () => {
     max-height: 450px;
     padding: 12px;
     margin-bottom: 20px;
-    background-color: #1a1a1a;
+    background-color: $lightGray;
     border: 1px solid $borderColor;
     border-radius: $borderRadius;
     overflow: auto;
@@ -366,7 +366,7 @@ const uploadLocalTemplate = () => {
     max-height: 450px;
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #1a1a1a;
+    background-color: $lightGray;
     border: 1px solid $borderColor;
     border-radius: $borderRadius;
     overflow: auto;
@@ -395,7 +395,7 @@ const uploadLocalTemplate = () => {
       border: 2px solid $borderColor;
       border-radius: $borderRadius;
       @include flex-grid-layout-children(2, 49%);
-      background-color: #2D2D2D;
+      background-color: $lightGray;
       overflow: hidden;
       transition: all $transitionDelay;
 
@@ -432,7 +432,7 @@ const uploadLocalTemplate = () => {
 
   .recommend {
     font-size: 12px;
-    background-color: #2D2D2D;
+    background-color: $lightGray;
     border: 1px solid $borderColor;
     color: $textColorSecondary;
     border-radius: $borderRadius;
@@ -443,8 +443,8 @@ const uploadLocalTemplate = () => {
     transition: all $transitionDelay;
 
     &:hover {
-      background-color: #3D3D3D;
-      color: #fff;
+      background-color: $charcoal;
+      color: $themeColor;
       border-color: $accentColor;
     }
   }
@@ -469,7 +469,7 @@ const uploadLocalTemplate = () => {
 .submit {
   height: 24px;
   font-size: 12px;
-  background-color: #0288D1;
+  background-color: $themeColor;
   color: #fff;
   display: flex;
   align-items: center;
@@ -479,7 +479,7 @@ const uploadLocalTemplate = () => {
   transition: all $transitionDelay;
 
   &:hover {
-    background-color: #039BE5;
+    background-color: $themeHoverColor;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }

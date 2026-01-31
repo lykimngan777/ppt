@@ -74,8 +74,8 @@ $subMenuWidth: 120px;
   }
 
   &:hover:not(.disable) {
-    background-color: #2D2D2D;
-    color: #fff;
+    background-color: $charcoal;
+    color: $themeColor;
   }
 
   &.divider {

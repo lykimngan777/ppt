@@ -191,7 +191,7 @@ const handleSelect = (option: SelectOption) => {
     color: #555;
   }
   &:not(.disabled, .selected):hover {
-    background-color: #2D2D2D;
+    background-color: $charcoal;
     cursor: pointer;
   }
 

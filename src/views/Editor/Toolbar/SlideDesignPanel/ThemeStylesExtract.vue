@@ -294,7 +294,7 @@ const getHexColor = (color: string) => {
     line-height: 25px;
     text-align: center;
     border: 1px solid $borderColor;
-    background-color: #1a1a1a;
+    background-color: $lightGray;
     font-size: 12px;
     padding: 0 5px;
     border-radius: 4px;

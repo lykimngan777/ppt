@@ -240,9 +240,9 @@ const emitBatchRichTextCommand = (action: RichTextAction[]) => {
   background-color: transparent;
 
   &:hover {
-    border-color: #0288D1;
-    color: #0288D1;
-    background-color: #2D2D2D;
+    border-color: $themeColor;
+    color: $themeColor;
+    background-color: rgba($themeColor, 0.05);
     z-index: 1;
   }
 
